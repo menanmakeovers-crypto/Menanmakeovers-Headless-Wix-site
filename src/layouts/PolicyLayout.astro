@@ -1,0 +1,25 @@
+---
+import SiteLayout from "./SiteLayout.astro";
+
+interface Props {
+  title: string;
+  heading: string;
+  description: string;
+  updated: string;
+}
+const { title, heading, description, updated } = Astro.props;
+---
+<SiteLayout title={title} description={description}>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Menan Makeovers · Pondicherry</span>
+      <h1>{heading}</h1>
+      <p class="lede updated">Last updated {updated}</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:clamp(16px,3vw,32px)">
+    <div class="wrap prose">
+      <slot />
+    </div>
+  </section>
+</SiteLayout>

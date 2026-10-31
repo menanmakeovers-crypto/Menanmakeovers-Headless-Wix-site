@@ -1,0 +1,36 @@
+---
+// One bridal package as an editorial text card: inside a fine arch with sparkles, the package name
+// in spaced serif capitals, its finish, who it suits, what is included as small tags, and a
+// WhatsApp price request at the foot.
+import Icon from "./Icon.astro";
+import LineArt from "./LineArt.astro";
+import { askPriceUrl } from "../lib/site";
+
+interface Pkg {
+  slug: string;
+  name: string;
+  tagline: string;
+  includes: string[];
+  chip?: string;
+  note?: string;
+}
+interface Props {
+  pkg: Pkg;
+  /** Home page: link the name to its full entry on /services. On /services the card is the anchor. */
+  linkTo?: string;
+}
+
+const { pkg, linkTo } = Astro.props;
+---
+<article class="pkg reveal" id={linkTo ? undefined : pkg.slug}>
+  <span class="pkg-arch" aria-hidden="true"></span>
+  <LineArt name="sparkle" class="pkg-star pkg-star-a" />
+  <LineArt name="sparkle" class="pkg-star pkg-star-b" />
+  <LineArt name="sparkle" class="pkg-star pkg-star-c" />
+  <h3 class="pkg-title">{linkTo ? <a href={linkTo}>{pkg.name}</a> : pkg.name}</h3>
+  <p class="pkg-sub">{pkg.chip ? pkg.chip.replace("hrs", "hours") : "Makeup · hair · saree draping"}</p>
+  <p class="pkg-body">{pkg.tagline}.</p>
+  <ul class="pkg-points" aria-label={`${pkg.name} includes`}>{pkg.includes.map((item) => <li>{item}</li>)}</ul>
+  {pkg.note && <p class="pkg-note">{pkg.note}</p>}
+  <a class="btn btn-gold" href={askPriceUrl(pkg.name)} target="_blank" rel="noopener"><Icon name="whatsapp" />Ask for the price</a>
+</article>

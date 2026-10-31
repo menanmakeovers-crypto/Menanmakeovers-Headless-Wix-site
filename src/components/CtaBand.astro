@@ -1,0 +1,38 @@
+---
+// Closing call to action shared by every page: WhatsApp first, phone second, address below.
+import WixImage from "./WixImage.astro";
+import Icon from "./Icon.astro";
+import { site, whatsappUrl, naturalHeight } from "../lib/site";
+
+interface Props {
+  title?: string;
+  text?: string;
+  photo?: string;
+  /** CSS object-position that keeps the bride's face in frame. */
+  focus?: string;
+}
+const {
+  title = "Check your muhurtham date before it fills up",
+  text = "Send your wedding date and functions on WhatsApp and we will reply with availability and package prices.",
+  photo = "76f29",
+  focus = "50% 12%",
+} = Astro.props;
+---
+<section class="cta" aria-labelledby="cta-title">
+  <div class="cta-grid">
+    <div class="cta-copy reveal">
+      <span class="eyebrow">Oulgaret, Puducherry · by appointment</span>
+      <h2 id="cta-title">{title}</h2>
+      <p>{text}</p>
+      <div class="cta-actions">
+        <a class="btn btn-light" href={whatsappUrl()} target="_blank" rel="noopener"><Icon name="whatsapp" />WhatsApp us</a>
+        <a class="btn btn-ghost-light" href={`tel:${site.phoneE164}`}><Icon name="phone" />Call {site.phoneDisplay}</a>
+      </div>
+      <div class="cta-meta">
+        <span>{site.addressLine}</span>
+        <a class="map-btn" href={site.mapsUrl} target="_blank" rel="noopener"><Icon name="map-pin" />Get directions</a>
+      </div>
+    </div>
+    <div class="cta-img reveal" style={`--focus: ${focus}`}><WixImage name={photo} w={760} h={naturalHeight(photo, 760)} alt="" /></div>
+  </div>
+</section>

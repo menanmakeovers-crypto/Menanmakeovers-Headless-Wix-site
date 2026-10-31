@@ -1,0 +1,41 @@
+---
+// Interim booking page. Once the owner's real Wix Bookings services exist, this page becomes the
+// bookings vertical's service list (templates/bookings) — until then it routes bookings to
+// WhatsApp and the enquiry form instead of showing placeholder services.
+import SiteLayout from "../layouts/SiteLayout.astro";
+import Icon from "../components/Icon.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { whatsappUrl } from "../lib/site";
+
+const steps = [
+  { title: "Send your date", text: "Message us on WhatsApp or fill in the enquiry form with your wedding date and functions." },
+  { title: "Choose your look", text: "Pick a package for each function. Book a trial makeup if you would like to see it first." },
+  { title: "Block your date", text: "Confirm with an advance, and we will plan the timings for every function with you." },
+];
+---
+<SiteLayout
+  title="Book Bridal Makeup in Pondicherry | Menan Makeovers"
+  description="Book your bridal look at Menan Makeovers. Secure your date for premium bridal makeup, professional saree draping and luxury styling packages."
+  ogImage="9d55d"
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Bridal bookings · Pondicherry</span>
+      <h1>Book your wedding date</h1>
+      <p class="lede">Bridal bookings are confirmed personally, so we can plan the timing of every function with you. Start on WhatsApp or with the enquiry form.</p>
+      <div class="page-hero-actions">
+        <a class="btn btn-primary" href={whatsappUrl()} target="_blank" rel="noopener"><Icon name="whatsapp" />Book on WhatsApp</a>
+        <a class="btn btn-outline" href="/contact">Use the enquiry form</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-paper" aria-labelledby="book-steps-title">
+    <div class="wrap">
+      <div class="section-head reveal"><h2 id="book-steps-title">How booking works</h2></div>
+      <ol class="steps">{steps.map((s) => <li class="reveal"><h3>{s.title}</h3><p>{s.text}</p></li>)}</ol>
+    </div>
+  </section>
+
+  <CtaBand />
+</SiteLayout>

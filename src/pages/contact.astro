@@ -1,0 +1,58 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import Icon from "../components/Icon.astro";
+import ContactForm from "../components/forms/ContactForm";
+import { getForm } from "../wix/forms/forms";
+import type { FormDto } from "../wix/forms/types";
+import { site, whatsappUrl } from "../lib/site";
+
+const FORM_ID = site.contactFormId;
+let form: FormDto | null = null;
+try {
+  form = await getForm(FORM_ID);
+} catch (err) {
+  // Guarded: the island loads the schema itself and shows the real error if it fails again.
+  console.error("[contact] server-side form load failed:", err);
+}
+---
+<SiteLayout
+  title="Contact a Bridal Makeup Artist in Pondicherry | Menan Makeovers"
+  description="Call or WhatsApp +91 94426 62212 to check your wedding date. Menan Makeovers studio: 42, Mettupalayam to Moolakulam Road, Oulgaret, Puducherry 605010."
+  ogImage="76f29"
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Oulgaret, Puducherry · by appointment</span>
+      <h1>Check your date with us</h1>
+      <p class="lede">WhatsApp is the quickest way to reach us. You can also call or send the enquiry form with your date and functions.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:clamp(16px,3vw,32px)" aria-label="Ways to reach us">
+    <div class="wrap contact-grid">
+      <div class="contact-cards">
+        <a class="contact-card reveal" href={whatsappUrl()} target="_blank" rel="noopener">
+          <Icon name="whatsapp" />
+          <div><strong>WhatsApp</strong><span>{site.phoneDisplay} · send your date and functions</span></div>
+        </a>
+        <a class="contact-card reveal" href={`tel:${site.phoneE164}`}>
+          <Icon name="phone" />
+          <div><strong>Call the studio</strong><span>{site.phoneDisplay}</span></div>
+        </a>
+        <a class="contact-card reveal" href={site.mapsUrl} target="_blank" rel="noopener">
+          <Icon name="map-pin" />
+          <div>
+            <strong>Visit the studio</strong>
+            <address>{site.address.street}<br />{site.address.locality}, {site.address.region} {site.address.postalCode}</address>
+          </div>
+        </a>
+      </div>
+
+      <div class="form-panel reveal">
+        <h2>Send an enquiry</h2>
+        <p class="lede">Tell us your date, the occasion and anything you have in mind for your look.</p>
+        <ContactForm client:load formId={FORM_ID} initialForm={form ?? undefined} />
+      </div>
+    </div>
+  </section>
+</SiteLayout>

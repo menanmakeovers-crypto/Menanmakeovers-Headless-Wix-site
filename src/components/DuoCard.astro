@@ -1,0 +1,46 @@
+---
+// Groom and bridesmaid packages side by side inside one oval frame. Each half is the anchor its
+// home-page link points to.
+import Icon from "./Icon.astro";
+import { content, whatsappUrl } from "../lib/site";
+
+const halves = [
+  {
+    id: "groom",
+    kicker: "Two looks for him",
+    intro: "Camera-ready grooming that looks natural beside the bride, from a light matte finish to a full HD base.",
+    title: "The groom",
+    packages: content.groom,
+    ask: "Hi Menan Makeovers, could you share your groom makeup prices? Our wedding date is ",
+    cta: "Ask for groom prices",
+  },
+  {
+    id: "bridesmaids",
+    kicker: "Sisters · friends · family",
+    intro: "Subtle non-HD looks or HD finishes for the people standing beside you on the day.",
+    title: "The bridal crew",
+    packages: content.bridesmaids,
+    ask: "Hi Menan Makeovers, could you share your bridesmaid makeup prices? The wedding date is ",
+    cta: "Ask for bridesmaid prices",
+  },
+];
+---
+<div class="duo reveal">
+  <span class="duo-oval" aria-hidden="true"></span>
+  {halves.map((h) => (
+    <section class="duo-half" id={h.id} aria-labelledby={`${h.id}-title`}>
+      <h3 class="duo-title" id={`${h.id}-title`}>{h.title}</h3>
+      <p class="duo-kicker">{h.kicker}</p>
+      <p class="duo-intro">{h.intro}</p>
+      <ul class="duo-list">
+        {h.packages.map((p) => (
+          <li id={p.slug}>
+            <strong>{p.name}</strong>
+            <ul class="pkg-points" aria-label={`${p.name} includes`}>{p.includes.map((item) => <li>{item}</li>)}</ul>
+          </li>
+        ))}
+      </ul>
+      <a class="btn btn-gold" href={whatsappUrl(h.ask)} target="_blank" rel="noopener"><Icon name="whatsapp" />{h.cta}</a>
+    </section>
+  ))}
+</div>

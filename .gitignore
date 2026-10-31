@@ -1,0 +1,40 @@
+# wix integration
+.wix/
+
+# build output
+dist/
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+.env.local
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/
+
+# every local env file, including backups: they hold the site's Wix keys
+.env*
+
+# client-preview build, its upload zip and local logs
+dist-preview/
+preview.zip
+*.log
+
+# local tool state and old settings backups
+.wrangler/
+wix.config.attach-backup.json

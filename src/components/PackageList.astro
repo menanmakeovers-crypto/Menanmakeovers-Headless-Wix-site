@@ -1,0 +1,57 @@
+---
+// The five bridal packages: three per row on larger screens; on phones one sideways row with dots
+// that follow the card in view, so all five fit in a single screen height.
+import PackageCard from "./PackageCard.astro";
+import { content } from "../lib/site";
+
+interface Props {
+  /** Home page: each name links to its full entry on /services. */
+  linked?: boolean;
+}
+const { linked = false } = Astro.props;
+---
+<div class="pkg-row" data-pkg-row>
+  <div class="pkg-list">
+    {content.bridal.map((pkg) => <PackageCard pkg={pkg} linkTo={linked ? `/services#${pkg.slug}` : undefined} />)}
+  </div>
+  <div class="pkg-row-foot" aria-hidden="true">
+    <span class="pkg-dots">{content.bridal.map((_, i) => <span class={i === 0 ? "on" : undefined}></span>)}</span>
+    <span class="swipe-hint">Swipe to see all {content.bridal.length}</span>
+  </div>
+</div>
+
+<script>
+  // Phones: the dots follow the card in view, and the row eases to that card's height once the
+  // swipe settles, so a shorter card never leaves empty space beneath it.
+  document.querySelectorAll<HTMLElement>("[data-pkg-row]").forEach((row) => {
+    const list = row.querySelector<HTMLElement>(".pkg-list");
+    const dots = [...row.querySelectorAll<HTMLElement>(".pkg-dots span")];
+    const cards = list ? ([...list.children] as HTMLElement[]) : [];
+    if (!list || cards.length < 2) return;
+    let current = 0;
+    let settle = 0;
+    const fit = () => {
+      // Larger screens wrap the cards into rows; there is nothing to fit.
+      if (list.scrollWidth <= list.clientWidth + 2) {
+        list.style.height = "";
+        return;
+      }
+      list.style.height = `${cards[current].offsetHeight + 4}px`;
+    };
+    list.addEventListener(
+      "scroll",
+      () => {
+        const step = cards[1].offsetLeft - cards[0].offsetLeft;
+        current = step > 0 ? Math.min(Math.round(list.scrollLeft / step), cards.length - 1) : 0;
+        dots.forEach((d, i) => d.classList.toggle("on", i === current));
+        window.clearTimeout(settle);
+        settle = window.setTimeout(fit, 120);
+      },
+      { passive: true },
+    );
+    window.addEventListener("resize", fit);
+    window.addEventListener("load", fit);
+    document.fonts?.ready.then(fit);
+    fit();
+  });
+</script>

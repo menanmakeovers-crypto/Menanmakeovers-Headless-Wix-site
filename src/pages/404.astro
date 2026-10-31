@@ -1,0 +1,19 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import Icon from "../components/Icon.astro";
+import { whatsappUrl } from "../lib/site";
+---
+<SiteLayout title="Page not found | Menan Makeovers" description="This page has moved. See our bridal packages, portfolio or contact Menan Makeovers in Pondicherry." noindex>
+  <section class="page-hero" style="min-height:60vh">
+    <div class="wrap">
+      <span class="eyebrow">Page not found</span>
+      <h1>This page has moved</h1>
+      <p class="lede">The page you were looking for isn&rsquo;t here any more. These are the pages most brides look for.</p>
+      <div class="page-hero-actions">
+        <a class="btn btn-primary" href="/services">See bridal packages</a>
+        <a class="btn btn-outline" href="/portfolio">View the portfolio</a>
+        <a class="btn btn-outline" href={whatsappUrl()} target="_blank" rel="noopener"><Icon name="whatsapp" />WhatsApp us</a>
+      </div>
+    </div>
+  </section>
+</SiteLayout>

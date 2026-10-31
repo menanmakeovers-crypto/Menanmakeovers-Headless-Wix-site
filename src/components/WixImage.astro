@@ -1,0 +1,31 @@
+---
+// A Wix-hosted photo at an exact size, with a 2x source for sharp phones.
+import { image, imageUrl } from "../lib/site";
+
+interface Props {
+  name: string;
+  w: number;
+  h: number;
+  mode?: "fill" | "fit";
+  align?: "c" | "t";
+  alt?: string;
+  class?: string;
+  loading?: "lazy" | "eager";
+  fetchpriority?: "high" | "low" | "auto";
+}
+
+const { name, w, h, mode = "fill", align = "c", alt, class: className, loading = "lazy", fetchpriority } = Astro.props;
+const src = imageUrl(name, w, h, mode, align);
+const srcset = `${src} 1x, ${imageUrl(name, w * 2, h * 2, mode, align)} 2x`;
+---
+<img
+  src={src}
+  srcset={srcset}
+  width={w}
+  height={h}
+  alt={alt ?? image(name).alt}
+  class={className}
+  loading={loading}
+  decoding="async"
+  fetchpriority={fetchpriority}
+/>

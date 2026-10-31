@@ -1,0 +1,189 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import WixImage from "../components/WixImage.astro";
+import LineArt from "../components/LineArt.astro";
+import Icon from "../components/Icon.astro";
+import PackageList from "../components/PackageList.astro";
+import DuoCard from "../components/DuoCard.astro";
+import Gallery from "../components/Gallery.astro";
+import Reviews from "../components/Reviews.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { content, site, whatsappUrl } from "../lib/site";
+
+const trust = [
+  { big: "4+ years", small: "in bridal makeup" },
+  { big: "HD & Airbrush", small: "long-lasting finishes" },
+  { big: "Trial makeup", small: "see your look before the day" },
+];
+
+const values = [
+  { title: "On time, every time", text: "Our brides say it in their reviews: the team arrives on time and keeps the morning calm." },
+  { title: "Your tone, your event", text: "Each look is built for your skin tone and the occasion, from a soft muhurtham look to evening reception glam." },
+  { title: "Hygiene first", text: "Professionalism, hygiene and certified services are the pillars of our studio." },
+];
+
+const steps = [
+  { title: "Send your date", text: "Message us on WhatsApp or fill in the enquiry form with your wedding date and functions." },
+  { title: "Choose your look", text: "Pick a package for each function. Book a trial makeup if you would like to see it first." },
+  { title: "Block your date", text: "Confirm with an advance, and we will plan the timings for every function with you." },
+];
+---
+<SiteLayout
+  title="Menan Makeovers | Bridal Makeup Artist in Pondicherry"
+  description="Bridal makeup artist in Pondicherry. HD and airbrush bridal makeup, hairstyling, saree draping, mehandi and rental jewellery by Menan Makeovers. Check your date on WhatsApp."
+>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1>
+          <span class="sr-only">Menan Makeovers: </span>
+          <span class="eyebrow">Bridal makeup artist in Pondicherry</span>
+          <span class="display"><span class="w" style="--i:0"><span>Flawless</span></span> <span class="w" style="--i:1"><span>from</span></span> <span class="w" style="--i:2"><em>muhurtham</em></span> <span class="w" style="--i:3"><span>to</span></span> <span class="w" style="--i:4"><span>reception</span></span></span>
+        </h1>
+        <p class="lede">Book HD and airbrush bridal makeup, hairstyling, saree draping, mehandi and rental jewellery, all under one roof with the Menan Makeovers team.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href={whatsappUrl(site.waEventDetails)} target="_blank" rel="noopener"><Icon name="whatsapp" />Share your event details</a>
+          <a class="btn btn-outline" href="#packages">View packages</a>
+          <a class="btn btn-team" href="/about#meet-the-team">
+            <span class="btn-avatars" aria-hidden="true">{content.team.slice(0, 3).map((person) => <WixImage name={person.photo} w={64} h={64} alt="" loading="eager" />)}</span>
+            Meet our team
+          </a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <div class="hero-main">
+          <WixImage name="02357" w={720} h={900} loading="eager" fetchpriority="high" />
+          <svg class="hero-arch" viewBox="0 0 400 500" aria-hidden="true"><path d="M14 486V200A186 186 0 0 1 386 200V486" pathLength="1" /></svg>
+        </div>
+        <div class="hero-inset"><WixImage name="80cdb" w={300} h={400} loading="eager" /></div>
+        <div class="hero-badge" aria-hidden="true">
+          <div class="coin">
+            <div class="coin-face coin-front"><div><strong>100+</strong><small>Brides</small></div></div>
+            <div class="coin-face coin-back"><img src="/logo-menan-makeovers-dark.webp" width="520" height="204" alt="" decoding="async" /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust" aria-label="Highlights">
+    <div class="wrap">
+      <ul class="trust-grid">
+        {trust.map((t) => <li><strong>{t.big}</strong><span>{t.small}</span></li>)}
+        <li class="trust-studio">
+          <strong>One studio</strong>
+          <ul class="trust-services">{content.services.map((svc) => <li>{svc.name}</li>)}</ul>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="packages" aria-labelledby="packages-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">5 bridal packages · makeup, hair &amp; draping included</span>
+        <h2 id="packages-title">Five finishes, one standard of care</h2>
+        <p class="lede">From simple and elegant to full airbrush. Every bridal package includes makeup, hairstyling and saree draping.</p>
+      </div>
+      <PackageList linked />
+      <div class="packages-foot">
+        <a class="link-arrow" href="/services#compare">Compare all packages <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <DuoCard />
+    </div>
+  </section>
+
+  <section class="section section-blush" id="services" aria-labelledby="services-title">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">8 services under one roof in Oulgaret</span>
+        <h2 id="services-title">Everything for the big day</h2>
+        <p class="lede">No running between vendors. Your makeup, hair, saree, jewellery, flowers, mehandi and nails are planned together, so every function looks complete.</p>
+      </div>
+      <div class="services-grid">
+        {content.services.map((s) => (
+          <a class="service reveal" href={`/services#${s.slug}`}>
+            {s.image ? (
+              <div class="service-img"><WixImage name={s.image} w={400} h={500} /></div>
+            ) : (
+              <div class="service-img typo" aria-hidden="true"><div><span>MM</span><small>{s.name}</small></div></div>
+            )}
+            <h3>{s.name}</h3>
+            <p>{s.text}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="portfolio" aria-labelledby="portfolio-title">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Our own work · no stock photos</span>
+        <h2 id="portfolio-title">Real Brides, Real Moments</h2>
+        <p class="lede">Every look here is our work for brides from Pondicherry and across Tamil Nadu.</p>
+      </div>
+      <Gallery photos={content.homeGallery} />
+      <div class="gallery-foot reveal">
+        <a class="btn-portfolio" href="/portfolio">
+          <span class="btn-portfolio-text"><strong>See the full portfolio</strong></span>
+          <span class="btn-portfolio-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-paper" aria-labelledby="experience-title">
+    <div class="wrap bts">
+      <div class="bts-media reveal">
+        <div class="tall"><WixImage name="ec90d" w={520} h={693} /></div>
+        <div class="short"><WixImage name="56038" w={380} h={475} /></div>
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">What our brides mention most</span>
+        <h2 id="experience-title" style="margin-top:18px">Relaxed, confident, completely stress-free</h2>
+        <ul class="values">
+          {values.map((v, i) => (
+            <li><span class="n">{String(i + 1).padStart(2, "0")}</span><div><strong>{v.title}</strong><p>{v.text}</p></div></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-blush" aria-labelledby="reviews-title">
+    <div class="wrap">
+      <div class="section-head center reveal" id="reviews">
+        <h2 id="reviews-title">In our brides&rsquo; words</h2>
+      </div>
+      <Reviews />
+    </div>
+  </section>
+
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <div class="arch-panel reveal">
+        <LineArt name="sparkle" class="arch-star arch-star-a" /><LineArt name="sparkle" class="arch-star arch-star-b" /><LineArt name="sparkle" class="arch-star arch-star-c" />
+        <div class="team-women">
+          <h2 class="team-motto" id="about-title"><span>Women who</span> <span>lift women</span></h2>
+          <p>Menan Makeovers is a team of women, built by women. What began in a small room at home has grown into a studio where women learn a craft, gain confidence and build careers of their own. Every artist here believes in lifting the women around her, starting with the bride in her chair, so that every woman we style feels strong, confident and celebrated on her day.</p>
+        </div>
+        <p class="sig">The Menan Makeovers team</p>
+        <a class="link-arrow" href="/about">Read our story <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-paper" aria-labelledby="steps-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2 id="steps-title">Three steps to your wedding look</h2>
+      </div>
+      <ol class="steps">
+        {steps.map((s) => <li class="reveal"><h3>{s.title}</h3><p>{s.text}</p></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <CtaBand />
+</SiteLayout>

@@ -1,0 +1,35 @@
+---
+// Masonry of real work; each photo opens full size in the page's lightbox.
+import WixImage from "./WixImage.astro";
+import { image, imageUrl, naturalHeight } from "../lib/site";
+
+interface Props {
+  photos: string[];
+  /** Show the photos in a fresh random order on every visit. */
+  shuffle?: boolean;
+}
+const { photos, shuffle = false } = Astro.props;
+---
+<div class="gallery">
+  {photos.map((name) => (
+    <figure class="reveal">
+      <button type="button" data-full={imageUrl(name, 1400, naturalHeight(name, 1400), "fit")} aria-label={`View larger: ${image(name).alt}`}>
+        <WixImage name={name} w={600} h={naturalHeight(name, 600)} />
+      </button>
+    </figure>
+  ))}
+</div>
+{shuffle && (
+  <script is:inline>
+    // Runs as soon as the gallery is parsed, before it is painted, so the new order never visibly jumps.
+    (function () {
+      var gallery = document.currentScript.previousElementSibling;
+      var items = Array.prototype.slice.call(gallery.children);
+      for (var i = items.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = items[i]; items[i] = items[j]; items[j] = t;
+      }
+      items.forEach(function (el) { gallery.appendChild(el); });
+    })();
+  </script>
+)}

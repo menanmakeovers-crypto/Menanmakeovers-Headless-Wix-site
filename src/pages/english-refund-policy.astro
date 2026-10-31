@@ -1,0 +1,22 @@
+---
+import PolicyLayout from "../layouts/PolicyLayout.astro";
+import Icon from "../components/Icon.astro";
+import { site, whatsappUrl } from "../lib/site";
+---
+<PolicyLayout
+  title="Refund Policy | Menan Makeovers"
+  heading="Refund and cancellation policy"
+  description="How cancellations, date changes and refunds of advances work for Menan Makeovers bridal bookings in Pondicherry."
+  updated="October 2026"
+>
+  <p>We hold your date for you once your advance is received. This page explains what happens if your plans change.</p>
+
+  <h2>Cancelling or moving your date</h2>
+  <p>Please tell us as early as possible on <a href={whatsappUrl("Hi Menan Makeovers, I need to change my booking for ")} target="_blank" rel="noopener" class="wa-link"><Icon name="whatsapp" />WhatsApp</a> or by phone on <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a>. Whether your advance can be refunded or moved to a new date depends on the terms confirmed with you in writing when you booked.</p>
+
+  <h2>Rental jewellery</h2>
+  <p>Any deposit for rental jewellery is returned when the jewellery comes back on time and in the condition it was given, as confirmed when you booked.</p>
+
+  <h2>Questions</h2>
+  <p>If you are unsure what applies to your booking, ask us before you pay the advance and we will confirm it in writing.</p>
+</PolicyLayout>

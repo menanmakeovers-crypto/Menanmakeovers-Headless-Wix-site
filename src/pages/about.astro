@@ -1,0 +1,124 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import WixImage from "../components/WixImage.astro";
+import LineArt from "../components/LineArt.astro";
+import Reviews from "../components/Reviews.astro";
+import TeamLine from "../components/TeamLine.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { content } from "../lib/site";
+---
+<SiteLayout
+  title="About Menan Makeovers | Bridal Makeup Studio in Pondicherry"
+  description="From a single chair and a mirror to a trusted bridal studio in Pondicherry: 4+ years and 100+ brides styled with HD makeup, hairstyling and saree draping."
+>
+  <section class="page-hero">
+    <div class="wrap about-hero">
+      <h1 class="sr-only">About Menan Makeovers</h1>
+      <figure class="founder-photo">
+        <span class="founder-frame"><WixImage name={content.founder.photo} w={480} h={600} loading="eager" /></span>
+      </figure>
+      <div class="founder-info">
+        <div class="founder-head">
+          <span class="eyebrow">Meet the founder</span>
+          <p class="founder-name">{content.founder.name}</p>
+          <p class="founder-role">{content.founder.role}</p>
+        </div>
+        <p class="founder-bio">{content.founder.bio}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section team-section" id="team" aria-labelledby="pros-title">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <h2 id="pros-title">Meet Menan&rsquo;s team</h2>
+        <p class="lede">The women behind every Menan Makeovers look.</p>
+      </div>
+      <TeamLine />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="our-story-title">
+    <div class="wrap">
+      <div class="arch-panel reveal">
+        <LineArt name="sparkle" class="arch-star arch-star-a" /><LineArt name="sparkle" class="arch-star arch-star-b" /><LineArt name="sparkle" class="arch-star arch-star-c" />
+        <span class="eyebrow">Our story · Pondicherry</span>
+        <h2 id="our-story-title">Every beautiful journey begins with a humble dream</h2>
+        <blockquote class="pullquote">&ldquo;Every bride who walks into Menan Makeovers should feel relaxed, confident and completely stress-free.&rdquo;</blockquote>
+        <p class="sig">The Menan Makeovers team</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:clamp(24px,4vw,48px)" aria-labelledby="story-title">
+    <div class="wrap">
+      <h2 id="story-title" class="sr-only">Our story</h2>
+      <div class="story reveal">
+        <p>Menan Makeovers was born in the most personal space of all — a small room at home. With just a single chair, a mirror and a basic vanity setup, we stepped into the world of beauty with passion and determination, beginning our journey as a freelance makeup service.</p>
+        <p>Our love for the craft pushed us to constantly learn and evolve. We trained under various mentors across Tamil Nadu and completed numerous professional courses — both online and offline — refining our skills and understanding the art of makeup in its finest form.</p>
+        <p>The first year was all about relentless hard work, freelancing tirelessly and building our foundation client by client. With the unwavering support of our family, that small dream slowly transformed into something bigger — the birth of Menan Makeovers Studio.</p>
+        <p>Our vision was always clear: every bride who walks into Menan Makeovers should feel relaxed, confident and completely stress-free. We wanted to create a space where a bride could find every service she needs under one roof, allowing her to simply trust us and enjoy her special moments.</p>
+        <p>Professionalism, hygiene and certified services became the pillars of our studio. We carefully built a team of dedicated interns and artists, trained to uphold the highest standards of quality and professionalism.</p>
+        <p>Today, after 4+ years and 100+ beautiful brides, Menan Makeovers has grown into a trusted bridal studio in Pondicherry. What makes us special is our commitment to staying ahead of trends, constantly evolving our makeup and hair techniques, and maintaining premium quality in every detail.</p>
+        <p>At Menan Makeovers, we believe beauty is not just about makeup — it&rsquo;s about creating an experience. And as a team, we continue to work passionately every day to keep raising our standards and make our brides&rsquo; most important moments truly unforgettable.</p>
+      </div>
+      <ul class="stats">
+        <li class="reveal"><strong>4+ years</strong><span>in bridal makeup, from freelance artist to studio</span></li>
+        <li class="reveal"><strong>100+ brides</strong><span>styled for muhurtham, engagement and reception</span></li>
+        <li class="reveal"><strong>One roof</strong><span>makeup, hair, saree, jewellery, flowers, mehandi and nails</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-paper" aria-labelledby="team-title">
+    <div class="wrap bts">
+      <div class="bts-media reveal">
+        <div class="tall"><WixImage name="ec90d" w={520} h={693} /></div>
+        <div class="short"><WixImage name="56038" w={380} h={475} /></div>
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">A trained team of artists</span>
+        <h2 id="team-title" style="margin-top:18px">The team behind every look</h2>
+        <p class="lede" style="margin-top:20px">Every artist and intern in the studio is trained to the same standards of quality, hygiene and professionalism, so your bridal morning feels the same whoever is holding the brush.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-blush" aria-labelledby="about-reviews-title">
+    <div class="wrap">
+      <div class="section-head center reveal"><h2 id="about-reviews-title">In our brides&rsquo; words</h2></div>
+      <Reviews />
+    </div>
+  </section>
+
+  <CtaBand />
+</SiteLayout>
+<script>
+  // The gold outlines' moving light is a loop: pause each one while it is off screen.
+  if ("IntersectionObserver" in window) {
+    const rings = new IntersectionObserver((entries) =>
+      entries.forEach((entry) => entry.target.classList.toggle("is-paused", !entry.isIntersecting)),
+    );
+    document.querySelectorAll(".about-hero, .team-photo").forEach((el) => rings.observe(el));
+  }
+
+  // Arriving from "Meet our team": start on the founder, then after 5 seconds glide down to the team,
+  // unless the visitor has already started scrolling, tapping or typing.
+  if (location.hash === "#meet-the-team") {
+    history.replaceState(null, "", location.pathname + location.search);
+    window.scrollTo(0, 0);
+    const team = document.getElementById("team");
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const events = ["wheel", "touchstart", "keydown", "pointerdown"];
+    const cancel = () => {
+      window.clearTimeout(timer);
+      events.forEach((e) => window.removeEventListener(e, cancel));
+    };
+    const timer = window.setTimeout(() => {
+      cancel();
+      team?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    }, 5000);
+    events.forEach((e) => window.addEventListener(e, cancel, { passive: true }));
+  }
+</script>
+

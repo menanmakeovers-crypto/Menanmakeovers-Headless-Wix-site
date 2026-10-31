@@ -1,0 +1,30 @@
+---
+import PolicyLayout from "../layouts/PolicyLayout.astro";
+import Icon from "../components/Icon.astro";
+import { site, whatsappUrl } from "../lib/site";
+---
+<PolicyLayout
+  title="Accessibility Statement | Menan Makeovers"
+  heading="Accessibility statement"
+  description="We want everyone to be able to browse the Menan Makeovers site and get in touch. Here is what we have done, and how to reach us if something doesn't work for you."
+  updated="October 2026"
+>
+  <p>We want everyone to be able to see our work, compare packages and get in touch with us, including people who use assistive technology.</p>
+
+  <h2>What we have done</h2>
+  <ul>
+    <li>Set the language of every page and used a clear heading structure.</li>
+    <li>Written text descriptions for the photos of our work.</li>
+    <li>Chosen text and background colours that meet the WCAG 2.1 AA contrast level.</li>
+    <li>Made the menu, photo viewer and enquiry form usable with a keyboard, with visible focus.</li>
+    <li>Labelled every field in the enquiry form and shown errors next to the field they belong to.</li>
+    <li>Turned off scrolling animations for visitors who ask their device to reduce motion.</li>
+  </ul>
+  <p>We aim to meet the Web Content Accessibility Guidelines (WCAG) 2.1 at level AA.</p>
+
+  <h2>Content we don't control</h2>
+  <p>WhatsApp, phone calls and Google Maps open in their own apps and follow their own accessibility standards.</p>
+
+  <h2>Tell us if something doesn't work</h2>
+  <p>If you have trouble using any part of this site, or need information in another way, call us on <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a> or <a href={whatsappUrl("Hi Menan Makeovers, I had trouble using your website: ")} target="_blank" rel="noopener" class="wa-link"><Icon name="whatsapp" />message us on WhatsApp</a>.</p>
+</PolicyLayout>

@@ -1,0 +1,3 @@
+{
+  "main": "./node_modules/@wix/astro-wix-hosting-adapter/build/backend-runtime/server.mjs"
+}

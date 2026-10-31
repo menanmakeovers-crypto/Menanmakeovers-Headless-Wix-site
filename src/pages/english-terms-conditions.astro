@@ -1,0 +1,35 @@
+---
+import PolicyLayout from "../layouts/PolicyLayout.astro";
+import { site } from "../lib/site";
+---
+<PolicyLayout
+  title="Terms & Conditions | Menan Makeovers"
+  heading="Terms and conditions"
+  description="Terms for using the Menan Makeovers website and booking bridal makeup, hair, saree draping and rental jewellery services in Pondicherry."
+  updated="October 2026"
+>
+  <p>These terms apply when you use this website and when you book services with Menan Makeovers, {site.addressLine}.</p>
+
+  <h2>Bookings</h2>
+  <ul>
+    <li>Your date is reserved only after we confirm your booking and receive the advance.</li>
+    <li>The package, price, advance amount and timings for each function are confirmed with you in writing, on WhatsApp or by message, when you book.</li>
+    <li>Package descriptions on this website are a guide. What is included in your booking is what we confirm with you.</li>
+    <li>Trial makeup is charged separately unless it is part of the package confirmed for you.</li>
+  </ul>
+
+  <h2>Before your appointment</h2>
+  <p>Please tell us about any skin sensitivities, allergies or medical conditions before your appointment so we can plan your makeup safely.</p>
+
+  <h2>Rental jewellery</h2>
+  <p>Rental jewellery must be returned on the agreed date in the condition it was given. Any deposit and the terms for damage or loss are confirmed when you book.</p>
+
+  <h2>Cancellations and changes</h2>
+  <p>See our <a href="/english-refund-policy">refund policy</a>.</p>
+
+  <h2>Photos and website content</h2>
+  <p>The photos and text on this website belong to Menan Makeovers. Please do not copy or reuse them without our permission.</p>
+
+  <h2>Questions</h2>
+  <p>Call or WhatsApp us on <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a>.</p>
+</PolicyLayout>

@@ -1,0 +1,31 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import Icon from "../components/Icon.astro";
+import Gallery from "../components/Gallery.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { content, whatsappUrl } from "../lib/site";
+---
+<SiteLayout
+  title="Bridal Makeup Portfolio | Real Brides in Pondicherry | Menan Makeovers"
+  description="Real bridal makeup, hairstyles and saree draping by Menan Makeovers for brides in Pondicherry and Tamil Nadu: muhurtham, engagement and reception looks."
+  ogImage="2c5f3"
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Our own work · no stock photos</span>
+      <h1>Bridal portfolio</h1>
+      <p class="lede">Muhurtham, engagement and reception looks we created for brides from Pondicherry and across Tamil Nadu. Tap any photo to see it larger.</p>
+      <div class="page-hero-actions">
+        <a class="btn btn-primary" href={whatsappUrl("Hi Menan Makeovers, I saw your portfolio and would like a similar look for my wedding on ")} target="_blank" rel="noopener"><Icon name="whatsapp" />Ask for a look like these</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:clamp(16px,3vw,32px)" aria-label="Photos">
+    <div class="wrap">
+      <Gallery photos={content.portfolio} shuffle />
+    </div>
+  </section>
+
+  <CtaBand title="Love a look? Let's plan yours" text="Send us a screenshot of the look you like with your wedding date, and we will suggest the right package." photo="273b5" focus="50% 30%" />
+</SiteLayout>

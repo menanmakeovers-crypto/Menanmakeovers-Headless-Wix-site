@@ -1,0 +1,35 @@
+---
+// Bridal packages side by side, row by row, from what each package lists (site.json bridalCompare).
+// Wide on purpose: on phones it scrolls sideways with the row names pinned on the left.
+import Icon from "./Icon.astro";
+import { content, askPriceUrl } from "../lib/site";
+---
+<p class="swipe-hint compare-hint" aria-hidden="true">Swipe the table to see all five &rarr;</p>
+<div class="compare-wrap reveal" role="region" aria-labelledby="compare-title" tabindex="0">
+  <table class="compare">
+    <thead>
+      <tr>
+        <th scope="col"><span class="sr-only">Package</span></th>
+        {content.bridal.map((pkg) => <th scope="col"><a href={`#${pkg.slug}`}>{pkg.name}</a></th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {content.bridalCompare.map((row) => (
+        <tr>
+          <th scope="row">{row.label}</th>
+          {row.values.map((value) => (
+            <td>{value ?? <span class="compare-none" aria-label="Not listed">&mdash;</span>}</td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+    <tfoot>
+      <tr>
+        <th scope="row">Price</th>
+        {content.bridal.map((pkg) => (
+          <td><a class="compare-ask" href={askPriceUrl(pkg.name)} target="_blank" rel="noopener"><Icon name="whatsapp" />Ask on WhatsApp</a></td>
+        ))}
+      </tr>
+    </tfoot>
+  </table>
+</div>

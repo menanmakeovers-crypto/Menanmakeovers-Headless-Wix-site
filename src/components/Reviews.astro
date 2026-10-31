@@ -1,0 +1,52 @@
+---
+import { content, site } from "../lib/site";
+---
+<div class="reviews-carousel reveal" data-carousel>
+  <div class="reviews-bar">
+    <a class="reviews-rating" href={site.reviewsUrl} target="_blank" rel="noopener">
+      <span class="reviews-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span><strong>{site.googleRating}</strong> on Google from over 100 reviews</span>
+    </a>
+    <div class="reviews-nav">
+      <button class="reviews-btn" type="button" data-step="-1" aria-label="Previous reviews" aria-controls="reviews-track">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+      </button>
+      <button class="reviews-btn" type="button" data-step="1" aria-label="Next reviews" aria-controls="reviews-track">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+      </button>
+    </div>
+  </div>
+  <div class="reviews" id="reviews-track" role="region" aria-label="Reviews from our brides" tabindex="0">
+    {content.reviews.map((r) => (
+      <article class="review">
+        <div class="mark" aria-hidden="true">&ldquo;</div>
+        <blockquote><p class="pull">{r.pull}</p></blockquote>
+        <details>
+          <summary>Read the full review</summary>
+          <p>{r.full}</p>
+        </details>
+        <footer><cite>{r.name}</cite><span>{r.occasion}</span></footer>
+      </article>
+    ))}
+  </div>
+</div>
+
+<script>
+  // The arrows page through the reviews a screenful at a time; swipe and trackpad scrolling work too.
+  const behavior: ScrollBehavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+  document.querySelectorAll<HTMLElement>("[data-carousel]").forEach((root) => {
+    const track = root.querySelector<HTMLElement>(".reviews");
+    const [prev, next] = root.querySelectorAll<HTMLButtonElement>("[data-step]");
+    if (!track || !prev || !next) return;
+    const sync = () => {
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+    };
+    for (const b of [prev, next]) {
+      b.addEventListener("click", () => track.scrollBy({ left: Number(b.dataset.step) * track.clientWidth, behavior }));
+    }
+    track.addEventListener("scroll", sync, { passive: true });
+    window.addEventListener("resize", sync);
+    sync();
+  });
+</script>

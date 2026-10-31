@@ -1,0 +1,426 @@
+---
+import "../styles/global.css";
+import Icon from "../components/Icon.astro";
+import { site, content, image, imageUrl, whatsappUrl, absoluteUrl } from "../lib/site";
+
+interface Props {
+  title: string;
+  description: string;
+  /** Social share image (an image key from site.json). */
+  ogImage?: string;
+  noindex?: boolean;
+  /** Extra schema.org nodes for this page, added to its JSON-LD graph. */
+  schema?: Record<string, unknown>[];
+}
+
+const { title, description, ogImage = "02357", noindex = false, schema = [] } = Astro.props;
+// Preview builds (PUBLIC_PREVIEW=1) stay out of search results until the site goes live.
+const hideFromSearch = noindex || import.meta.env.PUBLIC_PREVIEW === "1";
+const path = Astro.url.pathname;
+const canonical = absoluteUrl(path);
+// Link previews use the 1.91:1 frame social apps show; the top crop keeps the bride's face in it.
+const shareImage = imageUrl(ogImage, 1200, 630, "fill", "t");
+
+const nav = [
+  { label: "Home", href: "/" },
+  { label: "Packages", href: "/services" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "About", href: "/about" },
+  { label: "Reviews", href: "/#reviews" },
+  { label: "Contact", href: "/contact" },
+];
+const isCurrent = (href: string) => {
+  if (href.includes("#")) return undefined;
+  if (href === "/") return path === "/" ? "page" : undefined;
+  return path.startsWith(href) ? "page" : undefined;
+};
+
+// One schema.org graph per page: the business, the website, this page and its breadcrumb. Search
+// engines read it to name the site ("Menan Makeovers", also searched as "MenanMakeovers"), link it to
+// the Google Maps listing and Instagram, and show the page's place in the site.
+const home = `${site.url}/`;
+const businessId = `${site.url}/#business`;
+const websiteId = `${site.url}/#website`;
+const crumbNames: Record<string, string> = {
+  "/services": "Packages",
+  "/portfolio": "Portfolio",
+  "/about": "About",
+  "/contact": "Contact",
+  "/book-online": "Book online",
+  "/english-terms-conditions": "Terms & conditions",
+  "/english-privacy-policy": "Privacy policy",
+  "/english-refund-policy": "Refund policy",
+  "/accessibility-statement": "Accessibility statement",
+};
+const crumbName = crumbNames[path];
+const pageType = path === "/about" ? "AboutPage" : path === "/contact" ? "ContactPage" : "WebPage";
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BeautySalon",
+      "@id": businessId,
+      name: site.name,
+      alternateName: "MenanMakeovers",
+      slogan: site.tagline,
+      description: "Bridal makeup artist in Pondicherry offering HD and airbrush bridal makeup, hairstyling, saree draping, mehandi, nail art and rental jewellery.",
+      url: home,
+      telephone: site.phoneE164,
+      image: imageUrl("02357", 1200, 1500),
+      logo: { "@type": "ImageObject", url: absoluteUrl("/logo-menan-makeovers.png"), width: 600, height: 235 },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: site.address.street,
+        addressLocality: site.address.locality,
+        addressRegion: site.address.region,
+        postalCode: site.address.postalCode,
+        addressCountry: site.address.country,
+      },
+      areaServed: ["Puducherry", "Tamil Nadu"],
+      hasMap: site.googleMapsUrl,
+      sameAs: [site.instagramUrl, site.googleMapsUrl],
+      founder: { "@type": "Person", name: content.founder.name, jobTitle: content.founder.role },
+    },
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: home,
+      name: site.name,
+      alternateName: ["MenanMakeovers", "Menan Makeovers Pondicherry"],
+      inLanguage: "en-IN",
+      publisher: { "@id": businessId },
+    },
+    {
+      "@type": pageType,
+      "@id": `${canonical}#webpage`,
+      url: canonical,
+      name: title,
+      description,
+      inLanguage: "en-IN",
+      isPartOf: { "@id": websiteId },
+      about: { "@id": businessId },
+      primaryImageOfPage: { "@type": "ImageObject", url: shareImage },
+      ...(crumbName ? { breadcrumb: { "@id": `${canonical}#breadcrumb` } } : {}),
+    },
+    ...(crumbName
+      ? [
+          {
+            "@type": "BreadcrumbList",
+            "@id": `${canonical}#breadcrumb`,
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: home },
+              { "@type": "ListItem", position: 2, name: crumbName, item: canonical },
+            ],
+          },
+        ]
+      : []),
+    ...schema,
+  ],
+};
+---
+<!doctype html>
+<html lang="en-IN" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content={hideFromSearch ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
+    <meta name="theme-color" content="#5a1a2b" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={shareImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={image(ogImage).alt} />
+    <meta property="og:locale" content="en_IN" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={shareImage} />
+    <!-- The gold swash M from the logo: browser tabs, Google results and phone home screens. -->
+    <link rel="icon" href="/favicon-menan.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://static.wixstatic.com" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script is:inline>
+      // Hide the reveal blocks from the first paint when motion is welcome; the module script below
+      // reveals them. If it has not run within 3s, show everything as it is.
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
+        document.documentElement.classList.add("motion");
+        setTimeout(function () {
+          if (!document.documentElement.dataset.motionReady) document.documentElement.classList.remove("motion");
+        }, 3000);
+      }
+    </script>
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="wordmark" href="/">
+          <img src="/logo-menan-makeovers.webp" width="420" height="165" alt={site.name} />
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+        <nav class="nav" id="site-nav" aria-label="Main">
+          {nav.map((item) => <a href={item.href} aria-current={isCurrent(item.href)}>{item.label}</a>)}
+          <a class="nav-location" href={site.mapsUrl} target="_blank" rel="noopener"><Icon name="map-pin" />Location</a>
+          <a class="btn btn-primary" href={whatsappUrl()} target="_blank" rel="noopener"><Icon name="whatsapp" />Check your date</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div>
+          <a class="wordmark" href="/"><img src="/logo-menan-makeovers-dark.webp" width="520" height="204" alt={site.name} loading="lazy" /></a>
+          <p style="margin-top:18px;max-width:34ch">Bridal makeup, hair, saree draping, mehandi and rental jewellery in Pondicherry.</p>
+        </div>
+        <div>
+          <h2>Visit</h2>
+          <address>
+            {site.address.street}<br />{site.address.locality}, {site.address.region} {site.address.postalCode}
+          </address>
+          <p style="margin-top:14px"><a class="map-btn" href={site.mapsUrl} target="_blank" rel="noopener"><Icon name="map-pin" />Get directions</a></p>
+        </div>
+        <div>
+          <h2>Contact</h2>
+          <ul>
+            <li><a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a></li>
+            <li><a class="footer-social" href={whatsappUrl()} target="_blank" rel="noopener"><Icon name="whatsapp" />WhatsApp</a></li>
+            <li><a class="footer-social" href={site.instagramUrl} target="_blank" rel="noopener me"><Icon name="instagram" />Instagram</a></li>
+            <li><a href="/contact">Enquiry form</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="/services">Packages &amp; services</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/book-online">Book online</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="wrap footer-bottom">
+        <span>&copy; {new Date().getFullYear()} {site.name}. All rights reserved.</span>
+        <span>
+          <a href="/english-terms-conditions">Terms</a>{" · "}<a href="/english-privacy-policy">Privacy</a>{" · "}<a href="/english-refund-policy">Refunds</a>{" · "}<a href="/accessibility-statement">Accessibility</a>
+        </span>
+      </div>
+    </footer>
+
+    <div class="action-bar">
+      <a class="btn btn-outline" href={`tel:${site.phoneE164}`}><Icon name="phone" />Call</a>
+      <a class="btn btn-primary" href={whatsappUrl()} target="_blank" rel="noopener"><Icon name="whatsapp" />WhatsApp</a>
+    </div>
+
+    <dialog class="lightbox" aria-label="Photo viewer" data-wa={`https://wa.me/${site.whatsapp}?text=`}>
+      <div class="lightbox-top">
+        <p class="lightbox-count" aria-live="polite"></p>
+        <button class="lightbox-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg></button>
+      </div>
+      <figure class="lightbox-stage">
+        <img alt="" />
+        <figcaption class="lightbox-caption"></figcaption>
+      </figure>
+      <div class="lightbox-bar">
+        <button class="lightbox-nav prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg></button>
+        <a class="btn btn-gold lightbox-ask" href={whatsappUrl("Hi Menan Makeovers, I love a look from your portfolio and would like to know more.")} target="_blank" rel="noopener"><Icon name="whatsapp" />Ask for this look</a>
+        <button class="lightbox-nav next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg></button>
+      </div>
+    </dialog>
+
+    <script>
+      document.documentElement.classList.remove("no-js");
+
+      const header = document.querySelector(".site-header");
+      const onScroll = () => header?.classList.toggle("scrolled", window.scrollY > 8);
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      const toggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
+      const nav = document.getElementById("site-nav");
+      if (toggle && nav) {
+        const setOpen = (open: boolean) => {
+          toggle.setAttribute("aria-expanded", String(open));
+          toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+          nav.classList.toggle("open", open);
+        };
+        toggle.addEventListener("click", () => setOpen(toggle.getAttribute("aria-expanded") !== "true"));
+        nav.addEventListener("click", (e) => {
+          if ((e.target as HTMLElement).closest("a")) setOpen(false);
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") setOpen(false);
+        });
+      }
+
+      // Reveals: each .reveal block rises into place once as it arrives; blocks arriving together are
+      // staggered through --d. The hero's opening sequence runs in CSS. html.motion is set in the head
+      // only when motion is welcome, so nothing is hidden for visitors who prefer less motion.
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const root = document.documentElement;
+      if (root.classList.contains("motion")) {
+        root.dataset.motionReady = "1";
+        const io = new IntersectionObserver(
+          (entries) => {
+            let n = 0;
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              const el = entry.target as HTMLElement;
+              el.style.setProperty("--d", `${Math.min(n++ * 0.09, 0.36)}s`);
+              el.classList.add("is-in");
+              io.unobserve(el);
+              // Drop the stagger once the entrance is over, so later hover transitions start at once.
+              window.setTimeout(() => el.style.removeProperty("--d"), 2600);
+            }
+          },
+          { rootMargin: "0px 0px -4% 0px" },
+        );
+        document.querySelectorAll<HTMLElement>(".reveal").forEach((el) => {
+          // The page hero has its own opening sequence.
+          if (el.closest(".page-hero")) el.classList.add("is-in");
+          else io.observe(el);
+        });
+      }
+
+      // The hero seal's coin turn is a loop: pause it whenever the seal is off screen.
+      const seal = document.querySelector<HTMLElement>(".hero-badge");
+      if (seal && "IntersectionObserver" in window) {
+        new IntersectionObserver(([entry]) => seal.classList.toggle("is-paused", !entry.isIntersecting)).observe(seal);
+      }
+
+      // Arriving with a #section link from another page: photos, fonts and the package row are still
+      // settling when the browser jumps, which leaves it short. Snap to the section (without the smooth
+      // glide) and re-check for a few seconds, stopping as soon as the visitor scrolls, taps or types.
+      if (location.hash.length > 1) {
+        const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+        if (target) {
+          const root = document.documentElement;
+          let stopped = false;
+          let tries = 0;
+          const stop = () => (stopped = true);
+          ["wheel", "touchstart", "keydown", "pointerdown"].forEach((e) => window.addEventListener(e, stop, { passive: true, once: true }));
+          const land = () => {
+            if (stopped) return;
+            const smooth = root.style.scrollBehavior;
+            root.style.scrollBehavior = "auto";
+            target.scrollIntoView({ block: "start" });
+            root.style.scrollBehavior = smooth;
+            if (++tries < 10) window.setTimeout(land, 300);
+          };
+          land();
+        }
+      }
+
+      const dialog = document.querySelector<HTMLDialogElement>(".lightbox");
+      const triggers = [...document.querySelectorAll<HTMLButtonElement>(".gallery [data-full]")];
+      if (dialog && triggers.length && typeof dialog.showModal === "function") {
+        const view = dialog.querySelector("img")!;
+        const count = dialog.querySelector<HTMLElement>(".lightbox-count");
+        const caption = dialog.querySelector<HTMLElement>(".lightbox-caption");
+        const ask = dialog.querySelector<HTMLAnchorElement>(".lightbox-ask");
+        const stage = dialog.querySelector<HTMLElement>(".lightbox-stage");
+        const loaded = () => dialog.classList.remove("is-loading");
+        view.addEventListener("load", loaded);
+        view.addEventListener("error", loaded);
+        let index = 0;
+        let busy = false;
+        const show = (i: number) => {
+          index = (i + triggers.length) % triggers.length;
+          const t = triggers[index];
+          const thumb = t.querySelector("img");
+          const full = t.dataset.full ?? "";
+          // Show the photo already on the page at once, then the full-size one when it has arrived.
+          view.src = thumb?.currentSrc || full;
+          view.alt = thumb?.alt ?? "";
+          dialog.classList.toggle("is-loading", !view.complete);
+          if (full && view.src !== full) {
+            const sharp = new Image();
+            sharp.onload = () => {
+              if (triggers[index] === t) view.src = full;
+            };
+            sharp.src = full;
+          }
+          if (count) count.textContent = `${index + 1} / ${triggers.length}`;
+          if (caption) caption.textContent = view.alt;
+          // "Ask for this look" carries the photo's link, so the studio knows exactly which look.
+          if (ask) {
+            const message = `Hi Menan Makeovers, I love this look from your portfolio and would like to know more: ${full}`;
+            ask.href = `${dialog.dataset.wa}${encodeURIComponent(message)}`;
+          }
+        };
+        // Next/previous: the photo slips out the way it is going and the next one slides in once it has
+        // loaded. Taps are only held for the short slip-out, never while a photo downloads.
+        const go = (step: number) => {
+          if (reduceMotion) return show(index + step);
+          if (busy) return;
+          busy = true;
+          view.style.setProperty("--dir", String(step));
+          view.classList.add("is-leaving");
+          window.setTimeout(() => {
+            show(index + step);
+            view.classList.replace("is-leaving", "is-entering");
+            busy = false;
+            const enter = () => requestAnimationFrame(() => requestAnimationFrame(() => view.classList.remove("is-entering")));
+            if (view.complete) enter();
+            else {
+              view.addEventListener("load", enter, { once: true });
+              view.addEventListener("error", enter, { once: true });
+            }
+          }, 150);
+        };
+        triggers.forEach((t, i) =>
+          t.addEventListener("click", () => {
+            show(i);
+            dialog.showModal();
+          }),
+        );
+        dialog.querySelector(".lightbox-close")?.addEventListener("click", () => dialog.close());
+        dialog.querySelector(".prev")?.addEventListener("click", () => go(-1));
+        dialog.querySelector(".next")?.addEventListener("click", () => go(1));
+        dialog.addEventListener("click", (e) => {
+          if (e.target === dialog || e.target === stage) dialog.close();
+        });
+        dialog.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowLeft") go(-1);
+          if (e.key === "ArrowRight") go(1);
+        });
+        // Swipe between photos on touch screens.
+        let startX = 0;
+        let startY = 0;
+        dialog.addEventListener(
+          "touchstart",
+          (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+          },
+          { passive: true },
+        );
+        dialog.addEventListener(
+          "touchend",
+          (e) => {
+            const dx = e.changedTouches[0].clientX - startX;
+            const dy = e.changedTouches[0].clientY - startY;
+            if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.5) go(dx < 0 ? 1 : -1);
+          },
+          { passive: true },
+        );
+      }
+    </script>
+  </body>
+</html>

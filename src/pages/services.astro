@@ -1,0 +1,105 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import WixImage from "../components/WixImage.astro";
+import Icon from "../components/Icon.astro";
+import PackageList from "../components/PackageList.astro";
+import CompareTable from "../components/CompareTable.astro";
+import DuoCard from "../components/DuoCard.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { content, site, whatsappUrl } from "../lib/site";
+
+// The packages as schema.org services (no prices: those are shared on WhatsApp).
+const packages = [
+  ...content.bridal.map((p) => ({ ...p, serviceType: "Bridal makeup" })),
+  ...content.groom.map((p) => ({ ...p, serviceType: "Groom makeup" })),
+  ...content.bridesmaids.map((p) => ({ ...p, serviceType: "Bridesmaid makeup" })),
+];
+const catalog = {
+  "@type": "OfferCatalog",
+  "@id": `${site.url}/services#packages`,
+  name: "Bridal, groom and bridesmaid makeup packages",
+  itemListElement: packages.map((p) => ({
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name: p.name,
+      description: p.tagline,
+      serviceType: p.serviceType,
+      provider: { "@id": `${site.url}/#business` },
+      areaServed: "Puducherry",
+    },
+  })),
+};
+---
+<SiteLayout
+  title="Bridal Makeup Packages in Pondicherry | HD, Airbrush & Groom | Menan Makeovers"
+  description="Compare Menan Makeovers' bridal packages in Pondicherry: Basic, HD, HD Pro, Luxury and Elite Airbrush, plus groom and bridesmaid makeup, saree draping, mehandi and rental jewellery."
+  ogImage="80cdb"
+  schema={[catalog]}
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Packages &amp; services · Pondicherry</span>
+      <h1>Bridal, groom and bridesmaid packages</h1>
+      <p class="lede">Compare what each package includes, then ask for the price on WhatsApp with your date. Every bridal package includes makeup, hairstyling and saree draping.</p>
+      <div class="page-hero-actions">
+        <a class="btn btn-primary" href={whatsappUrl("Hi Menan Makeovers, could you share your bridal package prices? My wedding date is ")} target="_blank" rel="noopener"><Icon name="whatsapp" />Get prices on WhatsApp</a>
+        <a class="btn btn-outline" href="#groom">Groom &amp; bridesmaids</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:clamp(24px,4vw,48px)" aria-labelledby="bridal-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">For the bride · 5 finishes</span>
+        <h2 id="bridal-title">Bridal packages</h2>
+      </div>
+      <PackageList />
+    </div>
+  </section>
+
+  <section class="section section-paper" id="compare" aria-labelledby="compare-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2 id="compare-title">Compare the bridal packages</h2>
+        <p class="lede">Every package includes makeup, hairstyling and saree draping. Here is what changes as you go up.</p>
+      </div>
+      <CompareTable />
+    </div>
+  </section>
+
+  <section class="section section-blush" aria-labelledby="family-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">For the groom, sisters, friends &amp; family</span>
+        <h2 id="family-title">Groom &amp; bridesmaid packages</h2>
+      </div>
+      <DuoCard />
+    </div>
+  </section>
+
+  <section class="section section-paper" aria-labelledby="more-title">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">8 services under one roof in Oulgaret</span>
+        <h2 id="more-title">Everything else for the big day</h2>
+      </div>
+      <div class="services-grid">
+        {content.services.map((s) => (
+          <article class="service reveal" id={s.slug}>
+            {s.image ? (
+              <div class="service-img"><WixImage name={s.image} w={400} h={500} /></div>
+            ) : (
+              <div class="service-img typo" aria-hidden="true"><div><span>MM</span><small>{s.name}</small></div></div>
+            )}
+            <h3>{s.name}</h3>
+            <p>{s.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Share your event details" text="We will reply on WhatsApp with availability and prices for the packages you are considering." photo="9d55d" focus="50% 70%" />
+</SiteLayout>

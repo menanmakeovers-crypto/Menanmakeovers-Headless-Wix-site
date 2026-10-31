@@ -1,0 +1,193 @@
+---
+// The professionals, after the reference the owner chose: a fine vertical line with each person's
+// portrait in a glowing tile on one side and her card on the other, alternating down the page.
+// Under each name: her main title, then her other specialities as tags (site.json team[]).
+// Tapping a portrait grows it into a large card that turns over by itself to show her "DNA card"
+// (title and specialities beside a gold double helix), turns back, and shrinks home when closed.
+import WixImage from "./WixImage.astro";
+import { content } from "../lib/site";
+
+// The double helix on the back of the card: two strands half a turn apart, joined by rungs.
+const H = 500, W = 36, A = 11, TURNS = 3.5;
+const wave = (y: number, phase: number) => (W / 2 + A * Math.sin((y / H) * TURNS * 2 * Math.PI + phase)).toFixed(1);
+const strand = (phase: number) => Array.from({ length: H / 5 + 1 }, (_, k) => `${k ? "L" : "M"}${wave(k * 5, phase)} ${k * 5}`).join("");
+const rungs = Array.from({ length: 22 }, (_, k) => 12 + k * 22).map((y) => `M${wave(y, 0)} ${y}H${wave(y, Math.PI)}`).join("");
+---
+<ol class="team-line">
+  {content.team.map((person, i) => (
+    <li class:list={["team-item", "reveal", { "is-flip": i % 2 === 1 }]} style={`--i: ${i}`}>
+      <figure class="team-photo">
+        <button
+          class="team-open"
+          type="button"
+          aria-haspopup="dialog"
+          aria-label={`Open ${person.name}'s card`}
+          data-name={person.name}
+          data-role={person.role}
+          data-skills={JSON.stringify(person.skills)}
+        >
+          <span class="team-frame"><WixImage name={person.photo} w={480} h={600} /></span>
+        </button>
+      </figure>
+      <span class="team-node" aria-hidden="true"></span>
+      <div class="team-card">
+        <h3 class="team-name">{person.name}</h3>
+        {person.role && <p class="team-role">{person.role}</p>}
+        {person.skills.length > 0 && (
+          <ul class="team-skills" aria-label={`${person.name}'s specialities`}>{person.skills.map((skill) => <li>{skill}</li>)}</ul>
+        )}
+        {person.about && <p class="team-about">{person.about}</p>}
+        <p class="team-foot">Menan Makeovers</p>
+      </div>
+    </li>
+  ))}
+</ol>
+
+<dialog class="dna" aria-labelledby="dna-name">
+  <button class="dna-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg></button>
+  <div class="dna-stage">
+    <div class="dna-card">
+      <div class="dna-flip">
+        <div class="dna-face dna-front">
+          <img alt="" />
+          <div class="dna-front-cap">
+            <p class="dna-front-name"></p>
+            <p class="dna-front-role"></p>
+          </div>
+        </div>
+        <div class="dna-face dna-back">
+          <svg class="dna-helix" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true">
+            <path d={strand(0)} />
+            <path d={strand(Math.PI)} />
+            <path class="dna-rungs" d={rungs} />
+          </svg>
+          <p class="dna-label">The Menan Makeovers team</p>
+          <h2 class="dna-name" id="dna-name"></h2>
+          <p class="dna-role"></p>
+          <ul class="dna-skills"></ul>
+          <p class="dna-foot">Menan Makeovers</p>
+        </div>
+      </div>
+    </div>
+    <button class="dna-turn" type="button" aria-pressed="false">Flip card</button>
+  </div>
+</dialog>
+
+<script>
+  // Portrait to card: the card grows out of the tapped tile (FLIP on the Web Animations API), turns
+  // over by itself to show the details and back again, and shrinks back into its tile when closed.
+  // The turn itself is a CSS transition, so a tap can reverse it mid-turn.
+  const dialog = document.querySelector<HTMLDialogElement>(".dna");
+  const triggers = [...document.querySelectorAll<HTMLButtonElement>(".team-open")];
+  if (dialog && triggers.length && typeof dialog.showModal === "function") {
+    const card = dialog.querySelector<HTMLElement>(".dna-card")!;
+    const flip = dialog.querySelector<HTMLElement>(".dna-flip")!;
+    const photo = dialog.querySelector<HTMLImageElement>(".dna-front img")!;
+    const skills = dialog.querySelector<HTMLElement>(".dna-skills")!;
+    const closeButton = dialog.querySelector<HTMLButtonElement>(".dna-close")!;
+    const turnButton = dialog.querySelector<HTMLButtonElement>(".dna-turn")!;
+    const controls = [closeButton, turnButton];
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const DRAWER = "cubic-bezier(0.32, 0.72, 0, 1)";
+    const IN_OUT = "cubic-bezier(0.77, 0, 0.175, 1)";
+    let tile: HTMLElement | null = null;
+    let timers: number[] = [];
+    let closing = false;
+
+    const setText = (selector: string, value: string) =>
+      dialog.querySelectorAll<HTMLElement>(selector).forEach((el) => (el.textContent = value));
+    const turn = (on: boolean) => {
+      dialog.classList.toggle("is-turned", on);
+      turnButton.setAttribute("aria-pressed", String(on));
+      turnButton.textContent = on ? "Show photo" : "Flip card";
+    };
+    const stopAuto = () => {
+      timers.forEach((t) => window.clearTimeout(t));
+      timers = [];
+    };
+    // The transform that lays the open card exactly over the tile it came from.
+    const tileOffset = () => {
+      const from = tile!.getBoundingClientRect();
+      const to = card.getBoundingClientRect();
+      const dx = from.left + from.width / 2 - (to.left + to.width / 2);
+      const dy = from.top + from.height / 2 - (to.top + to.height / 2);
+      return `translate(${dx}px, ${dy}px) scale(${from.width / to.width})`;
+    };
+
+    const open = (trigger: HTMLButtonElement) => {
+      if (closing) return;
+      stopAuto();
+      tile = trigger.querySelector<HTMLElement>(".team-frame");
+      const thumb = trigger.querySelector("img");
+      photo.src = thumb?.currentSrc || thumb?.src || "";
+      photo.alt = thumb?.alt ?? "";
+      setText(".dna-front-name, .dna-name", trigger.dataset.name ?? "");
+      setText(".dna-front-role, .dna-role", trigger.dataset.role ?? "");
+      const list: string[] = JSON.parse(trigger.dataset.skills ?? "[]");
+      skills.replaceChildren(...list.map((s) => Object.assign(document.createElement("li"), { textContent: s })));
+      // Start on the photo side without animating the turn back from a previous card.
+      flip.style.transition = "none";
+      turn(false);
+      flip.getBoundingClientRect();
+      flip.style.transition = "";
+      dialog.showModal();
+      if (!reduce && tile) {
+        const from = tileOffset();
+        tile.style.visibility = "hidden";
+        card.animate([{ transform: from }, { transform: "none" }], { duration: 700, easing: DRAWER });
+        dialog.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 450, easing: "ease", pseudoElement: "::backdrop" });
+        controls.forEach((el) => el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: 500, easing: "ease", fill: "backwards" }));
+      } else {
+        dialog.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200, easing: "ease" });
+      }
+      // After a moment, turn over to the details; later, back to the photo.
+      timers = [window.setTimeout(() => turn(true), 2600), window.setTimeout(() => turn(false), 2600 + 900 + 5200)];
+    };
+
+    const finish = () => {
+      dialog.close();
+      dialog.getAnimations({ subtree: true }).forEach((a) => a.cancel());
+      flip.style.transition = "";
+      if (tile) tile.style.visibility = "";
+      closing = false;
+    };
+    // Exit faster than the entrance: the card turns back to the photo as it shrinks into its tile.
+    const close = () => {
+      if (closing || !dialog.open) return;
+      closing = true;
+      stopAuto();
+      if (reduce || !tile) {
+        dialog.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 150, easing: "ease", fill: "forwards" }).finished.then(finish);
+        return;
+      }
+      flip.style.transition = `transform 480ms ${IN_OUT}`;
+      turn(false);
+      const to = tileOffset();
+      controls.forEach((el) => el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 150, easing: "ease", fill: "forwards" }));
+      dialog.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 480, easing: "ease", pseudoElement: "::backdrop", fill: "forwards" });
+      card.animate([{ transform: "none" }, { transform: to }], { duration: 480, easing: IN_OUT, fill: "forwards" }).finished.then(finish);
+    };
+
+    const toggle = () => {
+      stopAuto();
+      turn(!dialog.classList.contains("is-turned"));
+    };
+    triggers.forEach((t) => t.addEventListener("click", () => open(t)));
+    closeButton.addEventListener("click", close);
+    card.addEventListener("click", toggle);
+    turnButton.addEventListener("click", toggle);
+    // Esc and taps outside the card close it the same animated way.
+    dialog.addEventListener("cancel", (e) => {
+      e.preventDefault();
+      close();
+    });
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog || (e.target as HTMLElement).classList.contains("dna-stage")) close();
+    });
+    // If the browser closes the dialog by itself, put the tile back.
+    dialog.addEventListener("close", () => {
+      stopAuto();
+      if (tile) tile.style.visibility = "";
+    });
+  }
+</script>

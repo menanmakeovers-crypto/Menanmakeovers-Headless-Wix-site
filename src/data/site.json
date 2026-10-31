@@ -1,0 +1,843 @@
+{
+  "site": {
+    "name": "Menan Makeovers",
+    "tagline": "The Wedding Makeup",
+    "url": "https://www.menanmakeovers.com",
+    "phoneDisplay": "+91 94426 62212",
+    "phoneE164": "+919442662212",
+    "whatsapp": "919442662212",
+    "waGreeting": "Hi Menan Makeovers, I'd like to check availability for my wedding. My date is ",
+    "waEventDetails": "Hi Menan Makeovers, here are my event details:\nOccasion: \nDate: \nVenue / location: \nNumber of people for makeup: ",
+    "contactFormId": "c45a3434-5ca3-4bc2-9bb7-b61a241be2a9",
+    "address": {
+      "street": "42, Mettupalayam to Moolakulam Road",
+      "locality": "Oulgaret",
+      "region": "Puducherry",
+      "postalCode": "605010",
+      "country": "IN"
+    },
+    "addressLine": "42, Mettupalayam to Moolakulam Road, Oulgaret, Puducherry 605010",
+    "mapsUrl": "https://maps.app.goo.gl/LdWcVFsr4vLpsBiG7",
+    "googleRating": "4.8",
+    "instagramUrl": "https://www.instagram.com/menan.makeovers/",
+    "googleMapsUrl": "https://maps.google.com/?cid=5303553382640943621",
+    "reviewsUrl": "https://maps.app.goo.gl/LdWcVFsr4vLpsBiG7"
+  },
+  "images": {
+    "02357": {
+      "id": "e2614d_02357e8f86cd43588667bafc5a731103~mv2.jpeg",
+      "w": 480,
+      "h": 720,
+      "alt": "Bride in a gold silk saree and temple jewellery standing in a traditional setting with marigold garlands"
+    },
+    "80cdb": {
+      "id": "e2614d_80cdb5f2b9be4947853a540e7a3e6807~mv2.jpeg",
+      "w": 480,
+      "h": 720,
+      "alt": "Close-up of a bride's HD makeup with maang tikka, nose ring and layered necklaces"
+    },
+    "2c5f3": {
+      "id": "e2614d_2c5f3615882d4810983c2c111123e1be~mv2.jpeg",
+      "w": 400,
+      "h": 600,
+      "alt": "Smiling bride in a sage silk saree with red stone temple jewellery"
+    },
+    "095ff": {
+      "id": "e2614d_095ffafb305342d593f6dfb0f5bf87cb~mv2.jpeg",
+      "w": 400,
+      "h": 600,
+      "alt": "Bride seated among sunflowers in an embroidered ivory saree"
+    },
+    "d1e0f": {
+      "id": "e2614d_d1e0f74a8a9b4546b659cb74353905ae~mv2.jpg",
+      "w": 400,
+      "h": 600,
+      "alt": "Bride in a neatly pre-pleated ivory saree posing by a garden ladder"
+    },
+    "ec90d": {
+      "id": "e2614d_ec90ddd4e4024db4b4486d148d357284~mv2.jpeg",
+      "w": 600,
+      "h": 400,
+      "alt": "Menan Makeovers artist applying eye makeup to a bride in the studio"
+    },
+    "99212": {
+      "id": "e2614d_992125f8656a4c5bb6415f1c9f28648d~mv2.png",
+      "w": 600,
+      "h": 800,
+      "alt": "Bridal stone necklace and earring set available to rent"
+    },
+    "bb95d": {
+      "id": "e2614d_bb95d079736946ea8fc6c2be68b7f3b7~mv2.png",
+      "w": 600,
+      "h": 940,
+      "alt": "Fresh lotus and baby's breath flower veni made for a bride's hairstyle"
+    },
+    "a0175": {
+      "id": "e2614d_a017535b5c54483fac1e48c8c7b542dd~mv2.jpg",
+      "w": 600,
+      "h": 980,
+      "alt": "Bridal nail extensions with mehandi-covered hands holding a silver mirror"
+    },
+    "d58b4": {
+      "id": "e2614d_d58b43f447dc48e5bb0bb80081dac090~mv2.png",
+      "w": 600,
+      "h": 1300,
+      "alt": "Intricate bridal mehandi on a bride's hands and feet"
+    },
+    "013e3": {
+      "id": "e2614d_013e3acc4bd34a49b1b2df975d8b1be8~mv2.jpg",
+      "w": 600,
+      "h": 880,
+      "alt": "Embroidered maroon and pink bridal blouse laid on a silk saree"
+    },
+    "12e17": {
+      "id": "e2614d_12e177602aa94291b229112bf42874de~mv2.jpeg",
+      "w": 480,
+      "h": 719,
+      "alt": "Bride in a black and gold sequinned saree at a temple entrance"
+    },
+    "9d55d": {
+      "id": "e2614d_9d55de5a3c964da79e588782aa799012~mv2.jpeg",
+      "w": 480,
+      "h": 719,
+      "alt": "Bride with a jasmine garland and gold jewellery in front of a floral backdrop"
+    },
+    "ea56d": {
+      "id": "e2614d_ea56d9830afa47a995a0a6eecca04047~mv2.jpeg",
+      "w": 480,
+      "h": 725,
+      "alt": "Bride in a red saree with pearl necklaces against warm fairy lights"
+    },
+    "273b5": {
+      "id": "e2614d_273b5bd37bfe4f318759dfcd9055b0dc~mv2.jpeg",
+      "w": 480,
+      "h": 719,
+      "alt": "Bride in a champagne saree at the Menan Makeovers studio backdrop"
+    },
+    "47b44": {
+      "id": "e2614d_47b4407ee52d4462bb89a57e6ba8915c~mv2.jpeg",
+      "w": 480,
+      "h": 720,
+      "alt": "Bride in an orange silk saree in soft window light"
+    },
+    "2e22e": {
+      "id": "e2614d_2e22e3ae20994a1b8dcd9b2cd01e03b0~mv2.jpeg",
+      "w": 480,
+      "h": 720,
+      "alt": "Bride in a pink and blue silk saree adjusting her maang tikka"
+    },
+    "a71b5": {
+      "id": "e2614d_a71b5da2907c4f5bb01738766d3ee87a~mv2.png",
+      "w": 480,
+      "h": 645,
+      "alt": "Back view of a long bridal braid decorated with small flower pins"
+    },
+    "30be5": {
+      "id": "e2614d_30be5028827f49fb8533dd6bd010bfbd~mv2.jpeg",
+      "w": 480,
+      "h": 720,
+      "alt": "Two women in yellow and teal silk sarees styled for a family function"
+    },
+    "94e00": {
+      "id": "e2614d_94e0003ba7174cceb793f9e565becf52~mv2.png",
+      "w": 960,
+      "h": 1280,
+      "alt": "Voluminous curled reception hairstyle with a green hair accessory"
+    },
+    "1125e": {
+      "id": "e2614d_1125efcfad134727827e390672a96a3d~mv2.jpeg",
+      "w": 480,
+      "h": 642,
+      "alt": "Traditional bridal braid with a jasmine bun and purple silk blouse"
+    },
+    "69581": {
+      "id": "e2614d_69581b9a9f3b45439111f638f8ef5bb1~mv2.png",
+      "w": 480,
+      "h": 639,
+      "alt": "Bridal braid wrapped in jasmine garlands, photographed among banana leaves"
+    },
+    "56038": {
+      "id": "e2614d_56038e394e4442d5bce22bae66b77910~mv2.jpeg",
+      "w": 960,
+      "h": 641,
+      "alt": "Artist fastening a bride's necklace while she smiles in the mirror"
+    },
+    "9c52d": {
+      "id": "e2614d_9c52d648a212436f977e67bdbd1bb13b~mv2.jpg",
+      "w": 960,
+      "h": 1260,
+      "alt": "Bride in a pink lehenga with mehandi and emerald jewellery"
+    },
+    "76f29": {
+      "id": "e2614d_76f29cdbba4c46cc9a1d36daf0743b1c~mv2.jpeg",
+      "w": 480,
+      "h": 493,
+      "alt": "Bride in a red silk saree with a jasmine and rose garland, hands joined in greeting"
+    },
+    "705cc": {
+      "id": "e2614d_705cc4fb33364285acd655f289b7f464~mv2.jpeg",
+      "w": 480,
+      "h": 320,
+      "alt": "Smiling bride in a red and gold saree with layered temple jewellery"
+    },
+    "e8608": {
+      "id": "e2614d_e8608691ecf14a3aaa039b95be3cc20d~mv2.jpeg",
+      "w": 1200,
+      "h": 800,
+      "alt": "Bride and groom smiling with family at their wedding"
+    },
+    "a5b94": {
+      "id": "0669dc_a5b9490fc5b04e9693988dc4f16ec493~mv2.jpg",
+      "w": 736,
+      "h": 1187,
+      "alt": "Client relaxing with a face pack during a facial at the Menan Makeovers studio"
+    },
+    "77393": {
+      "id": "0669dc_77393d548b924a23a07e7daf5d761b36~mv2.jpg",
+      "w": 1600,
+      "h": 1067,
+      "alt": "Smiling bride in a pastel green outfit with her family around her at the celebration"
+    },
+    "eff31": {
+      "id": "0669dc_eff31b69b8f24f469d454d3916762d86~mv2.jpg",
+      "w": 1290,
+      "h": 847,
+      "alt": "Laughing bride in a red and green silk saree and gold jewellery, leaning back under a flowering tree"
+    },
+    "86a83": {
+      "id": "0669dc_86a8342273ba40f4a795db016f2a7469~mv2.jpg",
+      "w": 1290,
+      "h": 1601,
+      "alt": "Bride in a lilac silk saree and emerald choker seated on a blue velvet chair beneath hanging flowers"
+    },
+    "bc54d": {
+      "id": "0669dc_bc54dc5166324117a4b5a33c8731cc23~mv2.jpg",
+      "w": 1290,
+      "h": 1940,
+      "alt": "Black-and-white portrait of a smiling bride in a silk saree and layered necklaces, getting ready in her room"
+    },
+    "a2def": {
+      "id": "0669dc_a2defb307b3e4e7d8aa5a62c962b6b92~mv2.jpg",
+      "w": 1333,
+      "h": 2000,
+      "alt": "Bride in a maroon silk saree and temple jewellery smiling between marigold garlands"
+    },
+    "c906a": {
+      "id": "0669dc_c906a3ae44eb440a8b476de2f7302b8f~mv2.jpg",
+      "w": 1290,
+      "h": 1935,
+      "alt": "Bride in an orange silk saree with red bridal bangles seated in front of ivory curtains"
+    },
+    "51cb3": {
+      "id": "0669dc_51cb3155e75746f0b96ab5e4d27e6f9b~mv2.jpg",
+      "w": 1333,
+      "h": 2000,
+      "alt": "Smiling bride in a maroon and ivory silk saree with mehandi on her hands and an emerald necklace"
+    },
+    "152a4": {
+      "id": "0669dc_152a406fe9e1423199bc796f3de3b952~mv2.jpg",
+      "w": 1333,
+      "h": 2000,
+      "alt": "Bride in a pink silk saree and veil holding a peacock feather, with emerald and diamond jewellery"
+    },
+    "62638": {
+      "id": "0669dc_626385d252e340a9b811ce8438a8d606~mv2.jpg",
+      "w": 1334,
+      "h": 2000,
+      "alt": "Bride in a pastel embroidered saree with an emerald and diamond necklace set"
+    },
+    "9a549": {
+      "id": "0669dc_9a54987d845048b797b5e984e4690fcb~mv2.jpg",
+      "w": 1333,
+      "h": 2000,
+      "alt": "Close-up of a bridal bun with jasmine and gold hair ornaments"
+    },
+    "e9af9": {
+      "id": "0669dc_e9af952d8ce547b1b3fedb97e1ea68c4~mv2.jpg",
+      "w": 1333,
+      "h": 2000,
+      "alt": "Back view of a bride in a teal silk saree with a long braid dressed in jasmine and gold ornaments"
+    },
+    "b9017": {
+      "id": "0669dc_b90178fcf88e44388545e8b51933fd2a~mv2.jpg",
+      "w": 1600,
+      "h": 1067,
+      "alt": "Black-and-white side profile of a bride in a silk saree with jasmine in her hair"
+    },
+    "04724": {
+      "id": "0669dc_0472432ceb85412bb30ef9f6171d5750~mv2.jpg",
+      "w": 1333,
+      "h": 2000,
+      "alt": "Laughing bride in a pink silk saree and rose garland beside the groom"
+    },
+    "a056a": {
+      "id": "0669dc_a056a03f35b84f169cebe3958634d4b9~mv2.jpg",
+      "w": 1600,
+      "h": 1067,
+      "alt": "Bride in a red checked silk saree and temple jewellery in soft, low light"
+    },
+    "816d3": {
+      "id": "0669dc_816d3e67b5f24917aeb6260b6136bf7a~mv2.jpg",
+      "w": 1506,
+      "h": 2000,
+      "alt": "Laughing bride in a red embroidered outfit with the groom behind her"
+    },
+    "0fedf": {
+      "id": "0669dc_0fedf4a86a6245f0bbfd44a9adcc9529~mv2.jpg",
+      "w": 1101,
+      "h": 2000,
+      "alt": "Smiling bride in a cream silk saree with a long braid, a friend beside her"
+    },
+    "abff8": {
+      "id": "0669dc_abff8c6e2ea64c418d0baf32ee3f0e0e~mv2.jpg",
+      "w": 1333,
+      "h": 2000,
+      "alt": "Bride in a peach silk saree and pink blouse sitting outdoors against green trees"
+    },
+    "9ed02": {
+      "id": "0669dc_9ed0297edf8b4ae6bb3dbfa426068f46~mv2.jpg",
+      "w": 1333,
+      "h": 2000,
+      "alt": "Smiling bride in a royal blue silk saree with a gold temple necklace and maang tikka"
+    },
+    "6b522": {
+      "id": "0669dc_6b522b9678f24cd59e3bd5e7b0e843ed~mv2.jpg",
+      "w": 853,
+      "h": 1280,
+      "alt": "Bride in a gold silk saree with a purple border, seated in warm light"
+    },
+    "7e856": {
+      "id": "0669dc_7e856e07078b4017a75ed135c29657b9~mv2.jpg",
+      "w": 853,
+      "h": 1280,
+      "alt": "Close-up of a bride in a lilac embroidered blouse and gold necklace, eyes lowered"
+    },
+    "f02d3": {
+      "id": "0669dc_f02d3d3150694fe6b55ef85544d272e9~mv2.jpg",
+      "w": 853,
+      "h": 1280,
+      "alt": "Smiling bride in a pink checked silk saree adjusting her hair, mehandi on her hands"
+    },
+    "b64c1": {
+      "id": "0669dc_b64c100919904c9bb5b7c085ded647f6~mv2.jpg",
+      "w": 1333,
+      "h": 2000,
+      "alt": "Bride in a brown and gold lehenga with mehandi, leaning on a carved wooden dressing mirror"
+    },
+    "960ee": {
+      "id": "0669dc_960eedbe8baf444a929522cecb9fc3e6~mv2.jpg",
+      "w": 1066,
+      "h": 1600,
+      "alt": "Bride in a champagne sequinned saree and diamond choker posing in a hotel corridor"
+    },
+    "aff6a": {
+      "id": "0669dc_aff6a88cb0f148dca3a0314ad8d1f193~mv2.jpg",
+      "w": 1066,
+      "h": 1600,
+      "alt": "Bride in a champagne sequinned saree and diamond choker, eyes lowered, against a softly lit wall"
+    },
+    "c9741": {
+      "id": "0669dc_c97419d7020a480dae4e38b47052e2e3~mv2.jpg",
+      "w": 1334,
+      "h": 2000,
+      "alt": "Smiling bride in a purple half-saree with a gold waist belt in a wood-panelled room"
+    },
+    "32f74": {
+      "id": "0669dc_32f74c2b3f4d4b7bb0a01475d32f4da6~mv2.jpg",
+      "w": 1333,
+      "h": 2000,
+      "alt": "Smiling bride in an embroidered champagne lehenga by a terrace wall at dusk"
+    },
+    "973df": {
+      "id": "0669dc_973df608a3bb4a64829173654f1e5a05~mv2.jpg",
+      "w": 852,
+      "h": 1280,
+      "alt": "Bride in a gold silk saree with a jasmine braid, standing between red and cream curtains"
+    },
+    "97146": {
+      "id": "0669dc_97146fae3aaf49919924f4bccda946d1~mv2.jpg",
+      "w": 1000,
+      "h": 1250,
+      "alt": "Portrait of Vijayalakshmi from the Menan Makeovers team"
+    },
+    "c802e": {
+      "id": "0669dc_c802e674958f4325a2ac242b9e6d8efb~mv2.jpg",
+      "w": 1000,
+      "h": 1250,
+      "alt": "Portrait of Joshiba from the Menan Makeovers team"
+    },
+    "e60ea": {
+      "id": "0669dc_e60eafab39244ed08e846ab7519dd585~mv2.jpg",
+      "w": 1000,
+      "h": 1250,
+      "alt": "Portrait of Swetha from the Menan Makeovers team"
+    },
+    "f5a14": {
+      "id": "0669dc_f5a14eca88bd4e2c9f8515e1a7c8732b~mv2.jpg",
+      "w": 1000,
+      "h": 1250,
+      "alt": "Portrait of Ramya from the Menan Makeovers team"
+    },
+    "77fd0": {
+      "id": "0669dc_77fd06b7f4654f4b869684d1a57101f4~mv2.jpg",
+      "w": 1000,
+      "h": 1250,
+      "alt": "Portrait of Gowri from the Menan Makeovers team"
+    },
+    "68a04": {
+      "id": "0669dc_68a04b14aec643adb8db656181f98a33~mv2.jpg",
+      "w": 1000,
+      "h": 1250,
+      "alt": "Aishwarya, founder and lead artist of Menan Makeovers"
+    }
+  },
+  "bridal": [
+    {
+      "slug": "basic-bridal",
+      "name": "Basic Bridal",
+      "tagline": "Perfect for a simple and elegant bridal look",
+      "includes": [
+        "Professional bridal makeup",
+        "Basic hairstyle",
+        "Saree draping"
+      ],
+      "note": "Contact lenses and lashes are not included.",
+      "chip": "Simple & elegant"
+    },
+    {
+      "slug": "hd-bridal",
+      "name": "HD Bridal",
+      "tagline": "A flawless high-definition finish designed to last 5 to 6 hours",
+      "chip": "Lasts 5–6 hrs",
+      "includes": [
+        "HD long-lasting base",
+        "Transfer-resistant finish",
+        "Customised hairstyle",
+        "Pre-pleated saree draping",
+        "Premium lashes & lenses"
+      ]
+    },
+    {
+      "slug": "hd-pro-bridal",
+      "name": "HD Pro Bridal",
+      "tagline": "For brides who want a glamorous, camera-ready finish",
+      "chip": "Lasts 6+ hrs",
+      "includes": [
+        "Advanced HD flawless base",
+        "Water & sweat-resistant makeup",
+        "Advanced bridal hairstyle",
+        "Professional saree draping",
+        "Premium lashes & lenses"
+      ]
+    },
+    {
+      "slug": "luxury-bridal",
+      "name": "High-End Luxury Bridal",
+      "tagline": "Waterproof, long-wear glam with priority service on your day",
+      "includes": [
+        "Premium long-wear flawless finish",
+        "Signature bridal hairstyle",
+        "Waterproof & transfer-proof base",
+        "Expert saree draping",
+        "Premium lashes & lenses",
+        "Priority bridal service"
+      ],
+      "chip": "Long-wear finish"
+    },
+    {
+      "slug": "elite-airbrush-bridal",
+      "name": "Elite Airbrush Bridal",
+      "tagline": "Our most premium and luxurious bridal transformation",
+      "chip": "Lasts 8+ hrs",
+      "includes": [
+        "High-end airbrush finish, ultra-lightweight",
+        "Waterproof, sweat-proof & transfer-proof",
+        "Signature advanced bridal hairstyle",
+        "Complete skin prep & glow enhancement",
+        "Professional saree draping, premium lashes & lenses",
+        "Priority booking & dedicated bridal attention"
+      ]
+    }
+  ],
+  "groom": [
+    {
+      "slug": "classic-groom",
+      "name": "Classic Groom",
+      "tagline": "A clean, refined and camera-ready look for the groom",
+      "includes": [
+        "Lightweight skin-to-skin grooming makeup",
+        "Natural matte finish",
+        "Hairstyling",
+        "Beard setting, if required"
+      ]
+    },
+    {
+      "slug": "luxury-groom",
+      "name": "Luxury & Advanced Groom",
+      "tagline": "For the groom who wants a flawless, premium finish",
+      "includes": [
+        "HD flawless base",
+        "Long-lasting, sweat-resistant finish",
+        "Advanced hairstyling",
+        "Beard detailing & grooming",
+        "Skin prep for smooth texture"
+      ]
+    }
+  ],
+  "bridesmaids": [
+    {
+      "slug": "basic-bridesmaid",
+      "name": "Basic Bridesmaid",
+      "tagline": "Ideal for a minimal, subtle look, and suitable for girls under 18",
+      "includes": [
+        "Professional non-HD makeup",
+        "Simple hairstyle",
+        "Light, elegant finish"
+      ]
+    },
+    {
+      "slug": "high-end-bridesmaid",
+      "name": "High-End Bridesmaid",
+      "tagline": "Perfect for close family and spotlight moments",
+      "includes": [
+        "HD makeup finish",
+        "Neat, customised hairstyle",
+        "Long-lasting look"
+      ]
+    }
+  ],
+  "also": [
+    {
+      "anchor": "groom",
+      "title": "For the groom",
+      "text": "Classic and Luxury grooming: skin-to-skin makeup, hair styling and beard detailing.",
+      "image": "e8608"
+    },
+    {
+      "anchor": "bridesmaids",
+      "title": "Bridesmaids & family",
+      "text": "Subtle non-HD looks or HD finishes for close family and spotlight moments.",
+      "image": "30be5"
+    }
+  ],
+  "services": [
+    {
+      "slug": "makeup-hair",
+      "name": "Bridal makeup & hair",
+      "text": "HD and airbrush finishes with a hairstyle designed around your look.",
+      "image": "ec90d"
+    },
+    {
+      "slug": "pre-pleated-sarees",
+      "name": "Pre-pleated sarees",
+      "text": "Pleated and box-folded in advance, so draping on the day is quick and neat.",
+      "image": "d1e0f"
+    },
+    {
+      "slug": "rental-jewellery",
+      "name": "Rental jewellery",
+      "text": "Bridal jewellery sets to rent for each function, so there is no need to buy.",
+      "image": "99212"
+    },
+    {
+      "slug": "flower-venis",
+      "name": "Fresh flower venis",
+      "text": "Fresh flower venis made for your hairstyle and outfit.",
+      "image": "bb95d"
+    },
+    {
+      "slug": "mehandi",
+      "name": "Bridal mehandi",
+      "text": "Detailed bridal mehandi for hands and feet.",
+      "image": "d58b4"
+    },
+    {
+      "slug": "nail-art",
+      "name": "Nail art",
+      "text": "Nail extensions and gel nail art to match your bridal look.",
+      "image": "a0175"
+    },
+    {
+      "slug": "bridal-blouses",
+      "name": "Bridal blouses",
+      "text": "Trendy bridal blouse designs to complete your saree.",
+      "image": "013e3"
+    },
+    {
+      "slug": "salon",
+      "name": "Salon services",
+      "text": "Salon care at the studio for you and your family.",
+      "image": "a5b94"
+    }
+  ],
+  "homeGallery": [
+    "2c5f3",
+    "9d55d",
+    "1125e",
+    "ea56d",
+    "273b5",
+    "a71b5",
+    "12e17",
+    "94e00",
+    "47b44",
+    "69581",
+    "9c52d",
+    "2e22e"
+  ],
+  "portfolio": [
+    "02357",
+    "2c5f3",
+    "9d55d",
+    "1125e",
+    "ea56d",
+    "273b5",
+    "80cdb",
+    "a71b5",
+    "12e17",
+    "94e00",
+    "76f29",
+    "47b44",
+    "69581",
+    "9c52d",
+    "2e22e",
+    "095ff",
+    "705cc",
+    "30be5",
+    "56038",
+    "77393",
+    "eff31",
+    "86a83",
+    "bc54d",
+    "a2def",
+    "c906a",
+    "51cb3",
+    "152a4",
+    "62638",
+    "9a549",
+    "e9af9",
+    "b9017",
+    "04724",
+    "a056a",
+    "816d3",
+    "0fedf",
+    "abff8",
+    "9ed02",
+    "6b522",
+    "7e856",
+    "f02d3",
+    "b64c1",
+    "960ee",
+    "aff6a",
+    "c9741",
+    "32f74",
+    "973df"
+  ],
+  "reviews": [
+    {
+      "name": "Gayathri Diwakar",
+      "occasion": "Engagement, wedding, reception and more",
+      "pull": "My engagement, muhurtham and reception looks were all beyond my expectations.",
+      "full": "My journey with Menan Makeovers started with my engagement, my first makeover. Aishu sis made me look so beautiful and the makeup was flawless; even my husband was surprised to see this version of me. From that day onwards she has done my makeover for every occasion: my marriage, reception, baby shower, pre-wedding shoot, maternity shoot and even my son's first birthday. She gave a natural and elegant look on all occasions; the engagement, muhurtham and reception looks were beyond my expectations. Her team made me so comfortable, they were always on time, and I strongly recommend her to everyone."
+    },
+    {
+      "name": "Vino Dhini",
+      "occasion": "Wedding and reception",
+      "pull": "The base felt incredibly lightweight but easily survived the long rituals and heavy garlands without creasing.",
+      "full": "Absolutely phenomenal experience with my wedding and reception makeup! For the morning ceremony, she gave me a classic, flawless traditional South Indian bridal look that perfectly complemented my red silk saree and temple jewellery. The base felt incredibly lightweight but easily survived the long rituals and heavy garlands without creasing. For the evening reception, she completely transformed my vibe into a stunning modern glam look to go with my champagne lehenga. The switch from the traditional braid to a chic soft updo was seamless, and the makeup was incredibly radiant under the bright stage spotlights. She is incredibly professional, highly punctual, listens to exactly what you want, and makes sure your saree draping and jewellery are completely secure. If you want a stress-free, versatile bridal makeup artist who can master both classic and modern looks, look no further. Highly, highly recommended!"
+    },
+    {
+      "name": "Dr. Sandhiya P",
+      "occasion": "Baby shower",
+      "pull": "Subtle, elegant and natural. Exactly how I wanted it.",
+      "full": "I chose Menan Makeovers for my baby shower makeup and I am extremely happy with the result. The look was subtle, elegant and natural, exactly how I wanted it. The base makeup was flawless, comfortable and long lasting. Highly recommended for brides and moms-to-be. Thank you for making my day special."
+    },
+    {
+      "name": "Medini R",
+      "occasion": "Wedding, reception, groom and bridesmaids",
+      "pull": "They handled five people at once, from hairstyling and makeup to saree draping, with flawless coordination.",
+      "full": "I booked my wedding makeover with Menan Makeovers for both my reception and wedding, and it was truly a wonderful experience! From start to finish, everything was handled professionally and with such a friendly attitude. The entire team was full of smiling faces, which really helped ease the nerves on such big days. Not only was my bridal makeover done to perfection, but the groom's makeover and the bridesmaids' styling were also handled with complete satisfaction. One major highlight is their punctuality and time management. They handled five people at once, from hairstyling and makeup to saree draping, and everything was done top to bottom with flawless coordination. Thank you so much to the entire team!"
+    },
+    {
+      "name": "Sushmidha K",
+      "occasion": "Pre-wedding shoot",
+      "pull": "Whatever reference or preference I shared, they executed it perfectly.",
+      "full": "Menan Makeovers, Pondicherry, is a wonderful makeup team. I chose them for my pre-wedding shoot and I'm extremely happy with the results. The look was very subtle and elegant, exactly how I wanted it. Whatever reference or preference I shared, they executed it perfectly. The base makeup was flawless, felt super comfortable and looked amazing on me. They patiently listened to every small request and delivered exactly what I envisioned. Honestly, this felt like the best version of me. I truly appreciate their patience, professionalism and punctuality; everything was done on time without any rush. On top of that, their pricing is very affordable for the quality they provide. I would highly recommend Menan Makeovers to all brides-to-be: trust them and let them work their magic!"
+    },
+    {
+      "name": "Amala C",
+      "occasion": "Engagement and wedding",
+      "pull": "One of the finest makeup artists in Pondy. Both makeup and hairdo were picture perfect.",
+      "full": "One of the finest makeup artists in Pondy. I booked them for my engagement and wedding as well. Both makeup and hairdo were picture perfect. I had asked for a soft, subtle glam for my wedding and they brought it out exactly. Great work!"
+    },
+    {
+      "name": "Jaya Vani",
+      "occasion": "Wedding and reception",
+      "pull": "My makeup lasted from 4:30 am until 6 pm, and I received so many compliments.",
+      "full": "I would like to extend my heartfelt thanks for your exceptional service in getting me ready for both my reception and wedding. Despite the limited time, you accommodated all my requests and made sure every detail of the look changeover was exactly how I envisioned it. Your saree draping was so comfortable that I didn't even feel like I was wearing one. I am especially grateful for your dedication during the reception makeover, getting me ready beautifully in just one hour with such calmness and patience. Overall, I am extremely happy with your service. My makeup lasted from 4:30 am until 6 pm, and I received so many compliments from friends and family. Thank you once again for your excellent work and professionalism."
+    },
+    {
+      "name": "Parveen",
+      "occasion": "Nikkah",
+      "pull": "Loved my look, and it exactly matched what I asked for.",
+      "full": "I had a really wonderful experience with my Nikkah makeover. They were really patient and on time. Loved my look, and it exactly matched what I asked for. Thanks a lot for the service and the experience. I would definitely recommend this place."
+    },
+    {
+      "name": "S. Leka Lakshmi Priya",
+      "occasion": "First professional makeup",
+      "pull": "I was a little nervous, but Menan Makeovers made me feel so comfortable and beautiful.",
+      "full": "I absolutely loved their work! The hairdo was just perfect and exactly what I wanted. This was my first time getting professional makeup done, so I was a little nervous and scared, but Menan Makeovers truly made my day and made me feel so comfortable and beautiful. The makeup was flawless, elegant and long-lasting throughout the event. I received so many compliments, and I couldn't have been happier with the final look. Thank you so much for making my special day even more beautiful and memorable! I highly recommend your work!"
+    },
+    {
+      "name": "Swetha S",
+      "occasion": "Sister's engagement",
+      "pull": "The drape, hairdo, everything was perfect and on time.",
+      "full": "Menan Makeovers did my sister's engagement, and now we have booked them for her wedding too. We are extremely satisfied with the professionalism they showed throughout. The look we expected was delivered. The drape, hairdo, everything was perfect and on time. They were very friendly and genuine, and made us feel so comfortable. Thank you so much! Looking forward to my sister's big day with Menan Makeovers too."
+    }
+  ],
+  "bridalCompare": [
+    {
+      "label": "Finish",
+      "values": [
+        "Professional bridal makeup",
+        "HD long-lasting base",
+        "Advanced HD flawless base",
+        "Premium long-wear flawless finish",
+        "High-end airbrush, ultra-lightweight"
+      ]
+    },
+    {
+      "label": "Lasts",
+      "values": [
+        null,
+        "5–6 hours",
+        "6+ hours",
+        "Long-wear",
+        "8+ hours"
+      ]
+    },
+    {
+      "label": "Protection",
+      "values": [
+        null,
+        "Transfer-resistant",
+        "Water & sweat-resistant",
+        "Waterproof & transfer-proof",
+        "Waterproof, sweat-proof & transfer-proof"
+      ]
+    },
+    {
+      "label": "Hairstyle",
+      "values": [
+        "Basic hairstyle",
+        "Customised hairstyle",
+        "Advanced bridal hairstyle",
+        "Signature bridal hairstyle",
+        "Signature advanced bridal hairstyle"
+      ]
+    },
+    {
+      "label": "Saree draping",
+      "values": [
+        "Saree draping",
+        "Pre-pleated saree draping",
+        "Professional saree draping",
+        "Expert saree draping",
+        "Professional saree draping"
+      ]
+    },
+    {
+      "label": "Lashes & lenses",
+      "values": [
+        "Not included",
+        "Premium",
+        "Premium",
+        "Premium",
+        "Premium"
+      ]
+    },
+    {
+      "label": "Skin prep",
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        "Complete skin prep & glow enhancement"
+      ]
+    },
+    {
+      "label": "On your day",
+      "values": [
+        null,
+        null,
+        null,
+        "Priority bridal service",
+        "Priority booking & dedicated bridal attention"
+      ]
+    }
+  ],
+  "team": [
+    {
+      "name": "Vijayalakshmi",
+      "photo": "97146",
+      "role": "Overall Senior Stylist",
+      "about": "",
+      "skills": [
+        "Expert Hair Artist",
+        "Advanced Bridal Draping Specialist",
+        "Nail Art Specialist",
+        "Luxury Jewellery Rental Manager"
+      ]
+    },
+    {
+      "name": "Joshiba",
+      "photo": "c802e",
+      "role": "Senior Makeup Artist",
+      "about": "",
+      "skills": [
+        "Muhurtham Bridal Makeup Expert",
+        "Bridesmaid Beauty Specialist",
+        "Reception Glamour Artist"
+      ]
+    },
+    {
+      "name": "Swetha",
+      "photo": "e60ea",
+      "role": "Social Media Strategist",
+      "about": "",
+      "skills": [
+        "Creative Content Designer",
+        "Post-Production Editor",
+        "Reels & Short-Form Video Specialist"
+      ]
+    },
+    {
+      "name": "Ramya",
+      "photo": "f5a14",
+      "role": "Bridesmaid Makeover Expert",
+      "about": "",
+      "skills": [
+        "Professional Hair Artist",
+        "Advanced Draping Specialist",
+        "Floral Hair Decoration Artist"
+      ]
+    },
+    {
+      "name": "Gowri",
+      "photo": "77fd0",
+      "role": "Professional Mehandi Artist",
+      "about": "",
+      "skills": [
+        "At-Home Beauty Service Specialist",
+        "Bridal Jewellery Rental Coordinator",
+        "Accounts & Operations Coordinator"
+      ]
+    }
+  ],
+  "founder": {
+    "name": "Aishwarya",
+    "role": "Founder & lead artist",
+    "photo": "68a04",
+    "bio": "Aishwarya started Menan Makeovers as a freelance artist with a single chair and a mirror in a small room at home. After training under mentors across Tamil Nadu, she built a studio and a team of women where a bride finds every service she needs under one roof."
+  }
+}

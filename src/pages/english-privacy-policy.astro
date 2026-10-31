@@ -1,0 +1,34 @@
+---
+import PolicyLayout from "../layouts/PolicyLayout.astro";
+import { site } from "../lib/site";
+---
+<PolicyLayout
+  title="Privacy Policy | Menan Makeovers"
+  heading="Privacy policy"
+  description="How Menan Makeovers handles the details you share when you enquire about or book bridal makeup in Pondicherry."
+  updated="October 2026"
+>
+  <p>This policy explains what personal details Menan Makeovers collects through this website, why, and what you can ask us to do with them. Menan Makeovers is a bridal makeup studio at {site.addressLine}.</p>
+
+  <h2>What we collect</h2>
+  <ul>
+    <li><strong>When you send the enquiry form:</strong> your name, phone or WhatsApp number, email address, wedding or event date, occasion and anything you write in the message.</li>
+    <li><strong>When you message us on WhatsApp or call us:</strong> the details you choose to share in that conversation.</li>
+    <li><strong>When you browse the site:</strong> our website platform, Wix, may record technical information such as your browser type and pages visited, and may set cookies that the site needs to work.</li>
+  </ul>
+
+  <h2>Why we use it</h2>
+  <p>We use your details only to reply to your enquiry, check availability for your date, share package prices, and plan and deliver the services you book with us.</p>
+
+  <h2>Where it is stored and who sees it</h2>
+  <p>Enquiry form submissions are stored in our Wix account. WhatsApp conversations are handled by WhatsApp under its own privacy policy. We do not sell your details. We share them only with the service providers that run this website, or when the law requires us to.</p>
+
+  <h2>How long we keep it</h2>
+  <p>We keep your details for as long as we need them to handle your enquiry or booking, and for any records we are required to keep.</p>
+
+  <h2>Your choices</h2>
+  <p>You can ask us to show, correct or delete the details we hold about you. Call or WhatsApp us on <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a>.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If we change how we handle personal details, we will update this page and the date at the top.</p>
+</PolicyLayout>
